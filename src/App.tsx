@@ -16,7 +16,7 @@ const routes = createBrowserRouter([
   }
 ])
 
-function App() {
+export const App: React.FC = () => {
   return (
     <Provider store={store}>
       <GlobalStyle />
@@ -26,5 +26,3 @@ function App() {
     </Provider>
   )
 }
-
-export default App
