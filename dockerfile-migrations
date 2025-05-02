@@ -1,0 +1,21 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+WORKDIR /app
+
+RUN apt-get update \
+  && apt-get install --no-install-recommends -y tzdata \
+  && apt-get clean
+
+ENV TZ=America/Sao_Paulo
+ENV LANG pt_BR.UTF-8
+ENV LANGUAGE ${LANG}
+ENV LC_ALL ${LANG}
+
+RUN ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo "${TZ}" > /etc/timezone
+
+RUN dotnet tool install --global dotnet-ef --version 6.0.26
+ENV PATH="$PATH:/root/.dotnet/tools"
+
+COPY . /app
+RUN dotnet restore
+RUN dotnet build -c Release
+ENTRYPOINT ["sh", "-c", "dotnet ef migrations add Initial --project Data --startup-project Services || true && dotnet ef database update --project Data --startup-project Services"]

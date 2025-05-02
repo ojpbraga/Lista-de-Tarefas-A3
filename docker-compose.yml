@@ -1,0 +1,66 @@
+networks:
+  default:
+    driver: bridge
+    name: testeweb
+
+volumes:
+  teste_data:
+
+services:
+  database:
+    image: "mysql:8.0"
+    hostname: database
+    container_name: database
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: teste
+      MYSQL_USER: teste
+      MYSQL_PASSWORD: teste
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - teste_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+      start_period: 10s
+
+  backend:
+    build:
+      context: .
+      dockerfile: dockerfile-backend
+    hostname: backend
+    container_name: backend
+    depends_on:
+      - database
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:5000
+
+  frontend:
+    build:
+      context: .
+      dockerfile: dockerfile-frontend
+    hostname: frontend
+    container_name: frontend
+    depends_on:
+      - backend
+    ports:
+      - "7000:7000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:7000
+      - BACKEND_BASE_URL=http://backend:5000
+
+  migrations:
+    build:
+      context: .
+      dockerfile: dockerfile-migrations
+    hostname: migrations
+    container_name: migrations
+    depends_on:
+      database:
+        condition: service_healthy

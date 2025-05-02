@@ -1,0 +1,16 @@
+﻿@model CadastroMVC.Models.ViewModel.LoginViewModel
+
+<form asp-action="Submitlogin">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="col-form-label-sm">
+        <input asp-for="CPF" class="form-control" placeholder="CPF" />
+        <span asp-validation-for="CPF" class="text-danger"></span>
+    </div>
+    <div class="col-form-label-sm">
+        <input asp-for="Placa" class="form-control" placeholder="Placa" />
+        <span asp-validation-for="Placa" class="text-danger"></span>
+    </div>
+    <div class="form-label">
+        <input type="submit" class="btn btn-primary" value="Entrar" />
+    </div>
+</form>

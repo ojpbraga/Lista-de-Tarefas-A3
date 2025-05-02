@@ -1,0 +1,73 @@
+﻿@model CadastroMVC.Models.ViewModel.RegisterViewModel
+
+<form asp-action="SubmitRegister">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="col-form-label-sm">
+        <label asp-for="Nome" class="control-label"></label>
+        <input asp-for="Nome" class="form-control" placeholder="Seu nome"/>
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+    <div class="col-form-label-sm">
+        <label asp-for="CPF" class="control-label"></label>
+        <input asp-for="CPF" class="form-control" placeholder="CPF"/>
+        <span asp-validation-for="CPF" class="text-danger"></span>
+    </div>
+    <div class="col-form-label-sm">
+        <label asp-for="Telefone" class="control-label"></label>
+        <input asp-for="Telefone" class="form-control" placeholder="Telefone" type="tel"/>
+        <span asp-validation-for="Telefone" class="text-danger"></span>
+    </div>
+    <div class="col-form-label-sm">
+        <label asp-for="Placa" class="control-label"></label>
+        <input asp-for="Placa" class="form-control" placeholder="Insira a placa do seu carro" />
+        <span asp-validation-for="Placa" class="text-danger"></span>
+    </div>
+    <div class="col-form-label-sm">
+        <label asp-for="Modelo" class="control-label"></label>
+        <input asp-for="Modelo" class="form-control" placeholder="Modelo do seu carro" />
+        <span asp-validation-for="Modelo" class="text-danger"></span>
+    </div>
+    <div class="col-form-label-sm">
+        <label asp-for="CEP" class="control-label"></label>
+        <input asp-for="CEP" class="form-control" placeholder="Informe seu CEP" />
+        <span asp-validation-for="CEP" class="text-danger"></span>
+    </div>
+    <div class="col-form-label-sm">
+        <label asp-for="Rua" class="control-label"></label>
+        <input asp-for="Rua" class="form-control" placeholder="Digite a rua da sua casa" />
+        <span asp-validation-for="Rua" class="text-danger"></span>
+    </div>
+    <div class="col-form-label-sm">
+        <label asp-for="Numero" class="control-label"></label>
+        <input asp-for="Numero" class="form-control" placeholder="Numero da sua casa" />
+        <span asp-validation-for="Numero" class="text-danger"></span>
+    </div>
+    <div class="col-form-label-sm">
+        <label asp-for="Bairro" class="control-label"></label>
+        <input asp-for="Bairro" class="form-control" placeholder="Digite seu Bairro" />
+        <span asp-validation-for="Bairro" class="text-danger"></span>
+    </div>
+    <div class="col-form-label-sm">
+        <label asp-for="Cidade" class="control-label"></label>
+        <input asp-for="Cidade" class="form-control" placeholder="Cidade" />
+        <span asp-validation-for="Cidade" class="text-danger"></span>
+    </div>
+    <div class="col-form-label-sm">
+        <label asp-for="Estado" class="control-label"></label>
+        <input asp-for="Estado" class="form-control" placeholder="Estado" />
+        <span asp-validation-for="Estado" class="text-danger"></span>
+    </div>
+    <div class="col-form-label-sm">
+        <label asp-for="Pais" class="control-label"></label>
+        <input asp-for="Pais" class="form-control" placeholder="País" />
+        <span asp-validation-for="Pais" class="text-danger"></span>
+    </div>
+    <div class="col-form-label-sm">
+        <label asp-for="Observacao" class="control-label"></label>
+        <textarea asp-for="Observacao" class="form-control" placeholder="Deseja colocar alguma informação a mais?" rows="3"></textarea>
+        <span asp-validation-for="Observacao" class="text-danger"></span>
+    </div>
+    <div class="form-label">
+        <input type="submit" class="btn btn-outline-primary" value="Registrar" />
+    </div>
+</form>
