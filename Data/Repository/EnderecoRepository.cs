@@ -2,11 +2,6 @@
 using Domain.Entities;
 using Domain.Intefaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.Repository
 {
@@ -40,6 +35,11 @@ namespace Data.Repository
         {
             var entity = await _cadastroContext.Enderecos.FindAsync(id);
             _cadastroContext.Enderecos.Remove(entity);
+        }
+
+        public async Task<Endereco> GetEnderecoByAssociado(int associadoId)
+        {
+            return await _cadastroContext.Enderecos.FirstOrDefaultAsync(end => end.AssociadoId == associadoId);
         }
     }
 }

@@ -26,18 +26,8 @@ namespace Application.DTOs
         [DataType(DataType.PhoneNumber)]
         public string Telefone { get; set; }
 
-        [Display(Name = "VeiculoId")]
-        [Required(ErrorMessage = "O campo 'VeiculoId' não pode estar vazio.")]
-        [Range(0, int.MaxValue)]
-        public int VeiculoId { get; set; }
-
         [JsonIgnore]
         public VeiculoDTO Veiculo { get; set; }
-
-        [Display(Name = "EnderecoId")]
-        [Required(ErrorMessage = "O campo 'EnderecoId' não pode estar vazio.")]
-        [Range(0, int.MaxValue)]
-        public int EnderecoId { get; set; }
 
         [JsonIgnore]
         public EnderecoDTO Endereco { get; set; }

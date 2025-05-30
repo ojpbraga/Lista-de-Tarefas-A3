@@ -10,15 +10,18 @@ namespace Application
     {
         private readonly IAssociadoRepository _associadoRepository;
         private readonly IVeiculoRepository _veiculoRepository;
+        private readonly IEnderecoRepository _enderecoRepository;
         private readonly IMapper _mapper;
 
         public AssociadoApplication(
             IAssociadoRepository associadoRepository,
-            IVeiculoRepository veiculoRepository, 
+            IVeiculoRepository veiculoRepository,
+            IEnderecoRepository enderecoRepository,
             IMapper mapper)
         {
             _associadoRepository = associadoRepository;
             _veiculoRepository = veiculoRepository;
+            _enderecoRepository = enderecoRepository;
             _mapper = mapper;
         }
 
@@ -79,8 +82,15 @@ namespace Application
             var associado = await _associadoRepository.Get(veiculo.AssociadoId);
             if (associado == null)
                 throw new Exception("Associado não encontrado com a placa informada.");
+                
+            var endereco = await _enderecoRepository.GetEnderecoByAssociado(associado.Id);
+            if (endereco == null)
+                throw new Exception("Associado não encontrado com a placa informada.");
 
             var resultado = _mapper.Map<AssociadoDTO>(associado);
+            resultado.Endereco = _mapper.Map<EnderecoDTO>(endereco);
+            resultado.Veiculo = _mapper.Map<VeiculoDTO>(veiculo);
+
             return resultado;
         }
 
