@@ -3,28 +3,27 @@ using Application;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Domain.Entities;
 
 namespace CadastroWebApi.Controllers
 {
-    [Route("api/carros")]
+    [Route("api/veiculos")]
     [ApiController]
-    public class CarrosController : ControllerBase
+    public class VeiculosController : ControllerBase
     {
-        private readonly ICarroApplication _carroApplication;
-        public CarrosController(ICarroApplication carroApplication)
+        private readonly IVeiculoApplication _veiculoApplication;
+        public VeiculosController(IVeiculoApplication veiculoApplication)
         {
-            _carroApplication = carroApplication;
+            _veiculoApplication = veiculoApplication;
         }
 
-        [HttpGet("all", Name = "Get-Carros")]
+        [HttpGet("all", Name = "Get-Veiculos")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAll()
         {
             try
             {
-                var carros = await _carroApplication.GetAll();
-                return this.HATEOASResult(carros, (a => this.Ok(a)));
+                var veiculos = await _veiculoApplication.GetAll();
+                return this.HATEOASResult(veiculos, (a => this.Ok(a)));
             }
             catch (Exception ex)
             {
@@ -32,14 +31,14 @@ namespace CadastroWebApi.Controllers
             }
         }
 
-        [HttpGet("{id}", Name = "Get-Carro")]
+        [HttpGet("{id}", Name = "Get-Veiculo")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Get(int id)
         {
             try
             {
-                var carro = await _carroApplication.Get(id);
-                return this.HATEOASResult(carro, (a) => this.Ok(a));
+                var veiculo = await _veiculoApplication.Get(id);
+                return this.HATEOASResult(veiculo, (a) => this.Ok(a));
             }
             catch (Exception ex)
             {
@@ -47,14 +46,14 @@ namespace CadastroWebApi.Controllers
             }
         }
 
-        [HttpPut(Name = "Edit-Carro")]
+        [HttpPut(Name = "Edit-Veiculo")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(CarroDTO carroDTO)
+        public async Task<IActionResult> Edit(VeiculoDTO veiculoDTO)
         {
             try
             {
-                await _carroApplication.Edit(carroDTO);
-                await _carroApplication.Save();
+                await _veiculoApplication.Edit(veiculoDTO);
+                await _veiculoApplication.Save();
                 return this.HATEOASResult(null, (a) => this.Ok("Dados atualizados com sucesso!"));
             }
             catch (Exception ex)
@@ -63,16 +62,16 @@ namespace CadastroWebApi.Controllers
             }
         }
 
-        [HttpPost(Name = "Create-Carro")]
+        [HttpPost(Name = "Create-Veiculo")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Add(CarroDTO carroDTO)
+        public async Task<IActionResult> Add(VeiculoDTO veiculoDTO)
         {
             try
             {
-                await _carroApplication.Add(carroDTO);
-                await _carroApplication.Save();
-                return this.HATEOASResult(null, (a) => this.Created("Carro adicionado!",
-                    new { Carro = carroDTO.Modelo }));
+                await _veiculoApplication.Add(veiculoDTO);
+                await _veiculoApplication.Save();
+                return this.HATEOASResult(null, (a) => this.Created("Veiculo adicionado!",
+                    new { Veiculo = veiculoDTO.Modelo }));
             }
             catch (Exception ex)
             {
@@ -80,14 +79,14 @@ namespace CadastroWebApi.Controllers
             }
         }
 
-        [HttpDelete("{id}", Name = "Delete-Carro")]
+        [HttpDelete("{id}", Name = "Delete-Veiculo")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Remove(int id)
         {
             try
             {
-                await _carroApplication.Delete(id);
-                await _carroApplication.Save();
+                await _veiculoApplication.Delete(id);
+                await _veiculoApplication.Save();
                 return this.HATEOASResult(null, (a) => this.Ok("Dados deletados com sucesso!"));
             }
             catch (Exception ex)
