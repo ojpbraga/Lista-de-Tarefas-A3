@@ -81,7 +81,6 @@ namespace CadastroWebApi.Controllers
 
                 if (user != null)
                 {
-                    enderecoDTO.Id = user.EnderecoId;
                     user.Endereco = enderecoDTO;
                     await _associadoApplication.Edit(user);
                     await _associadoApplication.Save();
