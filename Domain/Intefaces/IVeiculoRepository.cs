@@ -2,7 +2,7 @@
 
 namespace Domain.Intefaces
 {
-    public interface ICarroRepository : IRepository<Veiculo>
+    public interface IVeiculoRepository : IRepository<Veiculo>
     {
     }
 }
