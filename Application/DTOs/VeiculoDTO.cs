@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.DTOs
 {
-    public class CarroDTO
+    public class VeiculoDTO
     {
         [Key]
         [Range(0, int.MaxValue, ErrorMessage = "ID inválido.")]

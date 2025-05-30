@@ -1,7 +1,5 @@
-﻿using Domain.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-using System.Xml.Linq;
 
 namespace Application.DTOs
 {
@@ -28,13 +26,13 @@ namespace Application.DTOs
         [DataType(DataType.PhoneNumber)]
         public string Telefone { get; set; }
 
-        [Display(Name = "CarroId")]
-        [Required(ErrorMessage = "O campo 'CarroId' não pode estar vazio.")]
+        [Display(Name = "VeiculoId")]
+        [Required(ErrorMessage = "O campo 'VeiculoId' não pode estar vazio.")]
         [Range(0, int.MaxValue)]
-        public int CarroId { get; set; }
+        public int VeiculoId { get; set; }
 
         [JsonIgnore]
-        public CarroDTO Carro { get; set; }
+        public VeiculoDTO Veiculo { get; set; }
 
         [Display(Name = "EnderecoId")]
         [Required(ErrorMessage = "O campo 'EnderecoId' não pode estar vazio.")]
