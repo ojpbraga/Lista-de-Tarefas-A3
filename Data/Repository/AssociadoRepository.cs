@@ -23,26 +23,20 @@ namespace Data.Repository
 
         public override async Task<Associado> Get(int id)
         {
-            return await _cadastroContext.Associados.Include(a => a.Endereco)
-                .Include(a => a.Carro).Where(a => a.Id == id).FirstAsync();
+            return await _cadastroContext.Associados
+                .Where(a => a.Id == id)
+                .FirstAsync();
         }
 
         public override async Task<List<Associado>> GetAll()
         {
-            return await _cadastroContext.Associados.Include(a => a.Endereco)
-                .Include(a => a.Carro).ToListAsync();
+            return await _cadastroContext.Associados.ToListAsync();
         }
 
         public override async void Delete(int id)
         {
             var entity = await _cadastroContext.Associados.FindAsync(id);
             _cadastroContext.Associados.Remove(entity);
-        }
-
-        public async Task<Associado> GetByPlaca(string placa)
-        {
-            return await _cadastroContext.Associados.Include(a => a.Endereco)
-                .Include(a => a.Carro).Where(a => a.Carro.Placa == placa).FirstAsync();
         }
     }
 }

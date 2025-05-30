@@ -36,5 +36,10 @@ namespace Data.Repository
             var entity = await _cadastroContext.Veiculos.FindAsync(id);
             _cadastroContext.Veiculos.Remove(entity);
         }
+
+        public async Task<Veiculo> GetByPlaca(string placa)
+        {
+            return await _cadastroContext.Veiculos.FirstOrDefaultAsync(veiculo => veiculo.Placa == placa);
+        }
     }
 }
