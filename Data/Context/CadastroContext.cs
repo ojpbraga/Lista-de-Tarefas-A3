@@ -19,7 +19,7 @@ namespace Data.Context
         }
 
         public virtual DbSet<Associado> Associados { get; set; }
-        public virtual DbSet<Carro> Carros { get; set; }
+        public virtual DbSet<Veiculo> Veiculos { get; set; }
         public virtual DbSet<Endereco> Enderecos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
