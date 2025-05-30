@@ -1,4 +1,5 @@
 ﻿using Data.Context;
+using Domain.Entities;
 using Domain.Identity;
 using Domain.Intefaces;
 using Microsoft.AspNetCore.Identity;
@@ -8,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Transactions;
 
 namespace Data.Repository.Identity
 {
@@ -34,27 +36,58 @@ namespace Data.Repository.Identity
 
         public async Task<IdentityResult> Register(CadastroUser cadastroUser)
         {
-            var endereco = cadastroUser.CreateEndereco(cadastroUser);
-            await _cadastroContext.Enderecos.AddAsync(endereco);
-            await _cadastroContext.SaveChangesAsync();
-            int enderecoId = endereco.Id;
+            using TransactionScope trans = new(TransactionScopeAsyncFlowOption.Enabled);
+            var associado = new Associado
+            {
+                Nome = cadastroUser.Nome,
+                CPF = cadastroUser.CPF,
+                Telefone = cadastroUser.Telefone
+            };
 
-            var carro = cadastroUser.CreateCarro(cadastroUser);
-            await _cadastroContext.Carros.AddAsync(carro);
-            await _cadastroContext.SaveChangesAsync();
-            int carroId = carro.Id;
-
-            var associado = cadastroUser.CreateAssociado(cadastroUser);
-            associado.EnderecoId = enderecoId;
-            associado.CarroId = carroId;
             await _cadastroContext.Associados.AddAsync(associado);
             await _cadastroContext.SaveChangesAsync();
-            int associadoId = associado.Id;
 
-            var user = cadastroUser.CreateUser(cadastroUser);
-            user.AssociadoId = associadoId;
+            var veiculo = new Veiculo
+            {
+                Placa = cadastroUser.Placa,
+                Modelo = cadastroUser.Modelo,
+                TipoVeiculo = cadastroUser.TipoVeiculo,
+                AssociadoId = associado.Id
+            };
 
-            return await _userManager.CreateAsync(user, cadastroUser.Placa);
+            await _cadastroContext.Veiculos.AddAsync(veiculo);
+            await _cadastroContext.SaveChangesAsync();
+
+            var endereco = new Endereco
+            {
+                CEP = cadastroUser?.CEP,
+                Rua = cadastroUser?.Rua,
+                Numero = cadastroUser?.Numero ?? 0,
+                Bairro = cadastroUser?.Bairro,
+                Cidade = cadastroUser?.Cidade,
+                Estado = cadastroUser?.Estado,
+                Pais = cadastroUser?.Pais,
+                Observacao = cadastroUser?.Observacao,
+                AssociadoId = associado.Id
+            };
+            await _cadastroContext.Enderecos.AddAsync(endereco);
+            await _cadastroContext.SaveChangesAsync();
+
+            var user = new CadastroUser()
+            {
+                CPF = cadastroUser?.CPF,
+                Placa = cadastroUser?.Placa,
+                UserName = cadastroUser?.CPF?.Trim(),
+                PhoneNumber = cadastroUser?.Telefone,
+                AssociadoId = associado.Id
+            };
+
+            user.AssociadoId = associado.Id;
+
+            var result = await _userManager.CreateAsync(user, cadastroUser.Placa);
+            trans.Complete();
+            
+            return result;
         }
 
         public async Task<CadastroUser> UserExist(string cpf)
