@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Domain.Entities
 {
@@ -18,5 +15,9 @@ namespace Domain.Entities
         public string Pais { get; set; }
         public string? Observacao { get; set; }
         public int AssociadoId { get; set; }
+
+        [JsonIgnore]
+        [ForeignKey(nameof(AssociadoId))]
+        public Associado Associado { get; set; }
     }
 }
