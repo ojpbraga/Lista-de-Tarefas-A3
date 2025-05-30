@@ -27,8 +27,8 @@ namespace Application
             if (veiculo == null)
                 throw new Exception("Veiculo não encontrado.");
             
-            var carroDTO = _mapper.Map<VeiculoDTO>(veiculo);
-            _veiculoRepository.Delete(carroDTO.Id);
+            var veiculoDTO = _mapper.Map<VeiculoDTO>(veiculo);
+            _veiculoRepository.Delete(veiculoDTO.Id);
         }
 
         public async Task Edit(VeiculoDTO veiculoDTO)
@@ -44,7 +44,7 @@ namespace Application
         public async Task<VeiculoDTO> Get(int id)
         {
             if (!_veiculoRepository.Exist(id))
-                throw new Exception("Carro não encontrado.");
+                throw new Exception("Veiculo não encontrado.");
 
             return _mapper.Map<VeiculoDTO>(await _veiculoRepository.Get(id));
         }
