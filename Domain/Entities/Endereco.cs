@@ -17,5 +17,6 @@ namespace Domain.Entities
         public string Estado { get; set; }
         public string Pais { get; set; }
         public string? Observacao { get; set; }
+        public int AssociadoId { get; set; }
     }
 }
