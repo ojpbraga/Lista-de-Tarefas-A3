@@ -9,11 +9,16 @@ namespace Application
     public class AssociadoApplication : IAssociadoApplication
     {
         private readonly IAssociadoRepository _associadoRepository;
+        private readonly IVeiculoRepository _veiculoRepository;
         private readonly IMapper _mapper;
 
-        public AssociadoApplication(IAssociadoRepository associadoRepository, IMapper mapper)
+        public AssociadoApplication(
+            IAssociadoRepository associadoRepository,
+            IVeiculoRepository veiculoRepository, 
+            IMapper mapper)
         {
             _associadoRepository = associadoRepository;
+            _veiculoRepository = veiculoRepository;
             _mapper = mapper;
         }
 
@@ -67,13 +72,16 @@ namespace Application
 
         public async Task<AssociadoDTO> GetByPlaca(string placa)
         {
-            var associado = _mapper.Map<AssociadoDTO>(await _associadoRepository.GetByPlaca(placa));
+            var veiculo = await _veiculoRepository.GetByPlaca(placa);
+            if (veiculo == null)
+                throw new Exception("Associado não encontrado com a placa informada.");
+
+            var associado = await _associadoRepository.Get(veiculo.AssociadoId);
             if (associado == null)
-            {
-                throw new Exception("Associado não encontrado.");
-            }
-            else
-                return associado;
+                throw new Exception("Associado não encontrado com a placa informada.");
+
+            var resultado = _mapper.Map<AssociadoDTO>(associado);
+            return resultado;
         }
 
         public async Task<bool> Save()

@@ -4,11 +4,6 @@ using AutoMapper;
 using Domain.Identity;
 using Domain.Intefaces;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application
 {
@@ -30,19 +25,13 @@ namespace Application
 
         public async Task<SignInResult> Login(LoginDTO loginDTO)
         {
-            var user = await _cadastroUserRepository.UserExist(_mapper.Map<CadastroUser>(loginDTO).CPF);
-            
+            var user = await _cadastroUserRepository.UserExist(loginDTO.CPF);
             if (user == null)
-            {
                 return SignInResult.Failed;
-            }
             
-            var access = await _cadastroUserRepository.Login(user, _mapper.Map<CadastroUser>(loginDTO).Placa);
-            
+            var access = await _cadastroUserRepository.Login(user, loginDTO.Placa);
             if (access.Succeeded)
-            {
                 return SignInResult.Success;
-            }
 
             return SignInResult.Failed;
         }
