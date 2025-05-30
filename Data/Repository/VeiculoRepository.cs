@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repository
 {
-    public class VeiculoRepository : Repository<Veiculo>, ICarroRepository
+    public class VeiculoRepository : Repository<Veiculo>, IVeiculoRepository
     {
         public VeiculoRepository(CadastroContext cadastroContext): base(cadastroContext)
         {
