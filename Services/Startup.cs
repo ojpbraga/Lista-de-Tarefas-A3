@@ -71,12 +71,12 @@ namespace CadastroWebApi
                 });
 
             services.AddTransient<IAssociadoRepository, AssociadoRepository>();
-            services.AddTransient<ICarroRepository, CarroRepository>();
+            services.AddTransient<IVeiculoRepository, VeiculoRepository>();
             services.AddTransient<IEnderecoRepository, EnderecoRepository>();
             services.AddTransient<ICadastroUserRepository, CadastroUserRepository>();
 
             services.AddTransient<IAssociadoApplication, AssociadoApplication>();
-            services.AddTransient<ICarroApplication, CarroApplication>();
+            services.AddTransient<IVeiculoApplication, VeiculoApplication>();
             services.AddTransient<IEnderecoApplication, EnderecoApplication>();
             services.AddTransient<ICadastroUserApplication, CadastroUserApplication>();
 
@@ -146,29 +146,29 @@ namespace CadastroWebApi
                     HttpMethod.Delete,
                     (x) => new { id = x.Id });
 
-                //Carros
-                options.AddLink<CarroDTO>("todos-carros",
-                    "Get-Carros",
+                //Veiculos
+                options.AddLink<VeiculoDTO>("todos-veiculos",
+                    "Get-Veiculos",
                     HttpMethod.Get,
                     null);
 
-                options.AddLink<CarroDTO>("self",
-                    "Get-Carro",
+                options.AddLink<VeiculoDTO>("self",
+                    "Get-Veiculo",
                     HttpMethod.Get,
                     (x) => new { id = x.Id });
 
-                options.AddLink<CarroDTO>("editar-carro",
-                    "Edit-Carro",
+                options.AddLink<VeiculoDTO>("editar-veiculo",
+                    "Edit-Veiculo",
                     HttpMethod.Put,
                     (x) => new { id = x.Id });
 
-                options.AddLink<CarroDTO>("criar-carro",
-                    "Create-Carro",
+                options.AddLink<VeiculoDTO>("criar-veiculo",
+                    "Create-Veiculo",
                     HttpMethod.Post,
                     null);
 
-                options.AddLink<CarroDTO>("deletar-carro",
-                    "Delete-Carro",
+                options.AddLink<VeiculoDTO>("deletar-veiculo",
+                    "Delete-Veiculo",
                     HttpMethod.Delete,
                     (x) => new { id = x.Id });
             });
