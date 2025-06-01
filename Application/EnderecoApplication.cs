@@ -24,11 +24,9 @@ namespace Application
 
         public async Task Delete(int id)
         {
-            var endereco = await _enderecoRepository.Find(id);
-            if (endereco == null)
-            {
-                throw new Exception("Endereço não encontrado.");
-            }
+            var endereco = await _enderecoRepository.Find(id)
+                ?? throw new Exception("Endereço não encontrado.");
+
             var enderecoDTO = _mapper.Map<AssociadoDTO>(endereco);
             _enderecoRepository.Delete(enderecoDTO.Id);
         }
@@ -37,32 +35,25 @@ namespace Application
         {
             var endereco = await _enderecoRepository.Find(enderecoDTO.Id);
             if (!_enderecoRepository.Exist(endereco.Id))
-            {
                 throw new Exception("Endereço não encontrado.");
-            }
-            else
-                _enderecoRepository.Edit(_mapper.Map<Endereco>(enderecoDTO));
+            
+            _enderecoRepository.Edit(_mapper.Map<Endereco>(enderecoDTO));
         }
 
         public async Task<EnderecoDTO> Get(int id)
         {
-            if (_enderecoRepository.Exist(id))
-            {
-                return _mapper.Map<EnderecoDTO>(await _enderecoRepository.Get(id));
-            }
-            else
+            if (!_enderecoRepository.Exist(id))
                 throw new Exception("Endereço não encontrado.");
+
+            return _mapper.Map<EnderecoDTO>(await _enderecoRepository.Get(id));
         }
 
         public async Task<List<EnderecoDTO>> GetAll()
         {
-            var result = _mapper.Map<List<EnderecoDTO>>(await _enderecoRepository.GetAll());
-            if (result == null)
-            {
-                throw new Exception("Nenhum dado encontrado.");
-            }
-            else
-                return result;
+            var result = _mapper.Map<List<EnderecoDTO>>(await _enderecoRepository.GetAll())
+                ?? throw new Exception("Nenhum dado encontrado.");
+
+            return result;
         }
 
         public async Task<bool> Save()
