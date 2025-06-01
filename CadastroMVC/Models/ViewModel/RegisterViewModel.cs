@@ -1,5 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
+using Domain.Constantes.Enum;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CadastroMVC.Models.ViewModel
 {
@@ -31,6 +34,10 @@ namespace CadastroMVC.Models.ViewModel
         [Display(Name = "Modelo")]
         [StringLength(50, ErrorMessage = "Digite um modelo válido.", MinimumLength = 2)]
         public string Modelo { get; set; }
+
+        [Required(ErrorMessage = "O campo 'Tipo veículo' não pode estar vazio.")]
+        [Display(Name = "Tipo do veículo")]
+        public ETipoVeiculo TipoVeiculo { get; set; }
 
         [Required(ErrorMessage = "O campo 'CEP' não pode estar vazio.")]
         [Display(Name = "CEP")]

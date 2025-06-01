@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Domain.Identity;
 using Domain.Intefaces;
+using Domain.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Transactions;
 
 namespace Data.Repository.Identity
@@ -34,14 +36,14 @@ namespace Data.Repository.Identity
             _configuration = configuration;
         }
 
-        public async Task<IdentityResult> Register(CadastroUser cadastroUser)
+        public async Task<IdentityResult> Register(RegisterModel registerModel)
         {
             using TransactionScope trans = new(TransactionScopeAsyncFlowOption.Enabled);
             var associado = new Associado
             {
-                Nome = cadastroUser.Nome,
-                CPF = cadastroUser.CPF,
-                Telefone = cadastroUser.Telefone
+                Nome = registerModel.Nome,
+                CPF = registerModel.CPF,
+                Telefone = registerModel.Telefone
             };
 
             await _cadastroContext.Associados.AddAsync(associado);
@@ -49,9 +51,9 @@ namespace Data.Repository.Identity
 
             var veiculo = new Veiculo
             {
-                Placa = cadastroUser.Placa,
-                Modelo = cadastroUser.Modelo,
-                TipoVeiculo = cadastroUser.TipoVeiculo,
+                Placa = registerModel.Placa,
+                Modelo = registerModel.Modelo,
+                TipoVeiculo = registerModel.TipoVeiculo,
                 AssociadoId = associado.Id
             };
 
@@ -60,14 +62,14 @@ namespace Data.Repository.Identity
 
             var endereco = new Endereco
             {
-                CEP = cadastroUser?.CEP,
-                Rua = cadastroUser?.Rua,
-                Numero = cadastroUser?.Numero ?? 0,
-                Bairro = cadastroUser?.Bairro,
-                Cidade = cadastroUser?.Cidade,
-                Estado = cadastroUser?.Estado,
-                Pais = cadastroUser?.Pais,
-                Observacao = cadastroUser?.Observacao,
+                CEP = registerModel?.CEP,
+                Rua = registerModel?.Rua,
+                Numero = registerModel?.Numero ?? 0,
+                Bairro = registerModel?.Bairro,
+                Cidade = registerModel?.Cidade,
+                Estado = registerModel?.Estado,
+                Pais = registerModel?.Pais,
+                Observacao = registerModel?.Observacao,
                 AssociadoId = associado.Id
             };
             await _cadastroContext.Enderecos.AddAsync(endereco);
@@ -75,16 +77,14 @@ namespace Data.Repository.Identity
 
             var user = new CadastroUser()
             {
-                CPF = cadastroUser?.CPF,
-                Placa = cadastroUser?.Placa,
-                UserName = cadastroUser?.CPF?.Trim(),
-                PhoneNumber = cadastroUser?.Telefone,
+                CPF = registerModel?.CPF,
+                Placa = registerModel?.Placa,
+                UserName = registerModel?.Placa?.Trim(),
+                PhoneNumber = registerModel?.Telefone,
                 AssociadoId = associado.Id
             };
 
-            user.AssociadoId = associado.Id;
-
-            var result = await _userManager.CreateAsync(user, cadastroUser.Placa);
+            var result = await _userManager.CreateAsync(user, registerModel.Placa);
             trans.Complete();
             
             return result;

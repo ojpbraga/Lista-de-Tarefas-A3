@@ -2,6 +2,7 @@
 using AutoMapper;
 using Domain.Entities;
 using Domain.Identity;
+using Domain.Model;
 
 namespace Application.Mapper
 {
@@ -14,7 +15,7 @@ namespace Application.Mapper
             CreateMap<EnderecoDTO, Endereco>().ReverseMap();
             CreateMap<LoginDTO, CadastroUser>().ReverseMap();
             CreateMap<CadastroUserDTO, CadastroUser>().ReverseMap();
-            CreateMap<RegisterDTO, CadastroUser>().ReverseMap();
+            CreateMap<RegisterDTO, RegisterModel>().ReverseMap();
         }
     }
 }

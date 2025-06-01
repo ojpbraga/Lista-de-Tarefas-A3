@@ -3,6 +3,7 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain.Identity;
 using Domain.Intefaces;
+using Domain.Model;
 using Microsoft.AspNetCore.Identity;
 
 namespace Application
@@ -38,7 +39,7 @@ namespace Application
 
         public async Task<IdentityResult> Register(RegisterDTO registerDTO)
         {
-            var user = _mapper.Map<CadastroUser>(registerDTO);
+            var user = _mapper.Map<RegisterModel>(registerDTO);
             var register = await _cadastroUserRepository.Register(user);
 
             if (register.Succeeded)

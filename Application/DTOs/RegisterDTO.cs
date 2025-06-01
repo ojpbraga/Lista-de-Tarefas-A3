@@ -1,6 +1,7 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
+using Domain.Constantes.Enum;
 
 namespace Application.DTOs
 {
@@ -14,6 +15,7 @@ namespace Application.DTOs
         [Required(ErrorMessage = "O campo 'CPF' não pode estar vazio.")]
         [Display(Name = "CPF")]
         [StringLength(50, ErrorMessage = "Digite um CPF válido.", MinimumLength = 11)]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Somente números são permitidos")]
         public string CPF { get; set; }
 
         [Required(ErrorMessage = "O campo 'Telefone' não pode estar vazio.")]
@@ -21,6 +23,7 @@ namespace Application.DTOs
         [Display(Name = "Telefone")]
         [StringLength(70, ErrorMessage = "Digite um telefone válido.", MinimumLength = 8)]
         [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Somente números são permitidos")]
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "O campo 'Placa' não pode estar vazio.")]
@@ -32,6 +35,10 @@ namespace Application.DTOs
         [Display(Name = "Modelo")]
         [StringLength(50, ErrorMessage = "Digite um modelo válido.", MinimumLength = 2)]
         public string Modelo { get; set; }
+
+        [Required(ErrorMessage = "O campo 'Tipo veículo' não pode estar vazio.")]
+        [Display(Name = "Tipo do veículo")]
+        public ETipoVeiculo TipoVeiculo { get; set; }
 
         [Required(ErrorMessage = "O campo 'CEP' não pode estar vazio.")]
         [Display(Name = "CEP")]
