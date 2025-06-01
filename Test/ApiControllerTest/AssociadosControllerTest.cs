@@ -36,9 +36,7 @@ namespace Test.ApiTest
             {
                 Nome = "Arthur Vinícius Souza Ribeiro",
                 CPF = "12324345613",
-                Telefone = "031 995331227",
-                CarroId = 22,
-                EnderecoId = 22
+                Telefone = "031 995331227"
             };
 
             var repositoryTest = new Mock<IAssociadoApplication>();
@@ -109,9 +107,7 @@ namespace Test.ApiTest
                 Id = 1,
                 Nome = "Arthur Vinícius Souza Ribeiro",
                 CPF = "12324345613",
-                Telefone = "031 995331227",
-                CarroId = 22,
-                EnderecoId = 22
+                Telefone = "031 995331227"
             };
 
             var repositoryTest = new Mock<IAssociadoApplication>();
@@ -127,7 +123,6 @@ namespace Test.ApiTest
             newAssociado.CPF.Should().NotBe(null, "Can't be null.");
             newAssociado.Nome.Should().NotBeNull();
             newAssociado.Id.Should().Be(1);
-            newAssociado.CarroId.Should().Be(22);
             newAssociado.Should().BeOfType<AssociadoDTO>();
         }
 
@@ -154,9 +149,7 @@ namespace Test.ApiTest
                 Id = 1,
                 Nome = "Arthur Vinícius Souza Ribeiro",
                 CPF = "12324345613",
-                Telefone = "031 995331227",
-                CarroId = 22,
-                EnderecoId = 22
+                Telefone = "031 995331227"
             };
 
             //Act
@@ -175,16 +168,14 @@ namespace Test.ApiTest
                 Id = -1,
                 Nome = "Arthur Vinícius Souza Ribeiro",
                 CPF = "1",
-                Telefone = "5",
-                CarroId = -1,
-                EnderecoId = -1
+                Telefone = "5"
             };
 
             //Act
             var erros = ValidateObject(newAssociado);
 
             //Assert
-            Assert.True(erros.Count == 5);
+            Assert.True(erros.Count == 3);
         }
 
         [Fact]
@@ -196,9 +187,7 @@ namespace Test.ApiTest
                 Id = 1,
                 Nome = "Arthur",
                 CPF = "12324345613",
-                Telefone = "031 995331227",
-                CarroId = 22,
-                EnderecoId = 22
+                Telefone = "031 995331227"
             };
 
             var repositoryTest = new Mock<IAssociadoApplication>();
@@ -207,8 +196,7 @@ namespace Test.ApiTest
             var editedAssociado = new AssociadoDTO()
             {
                 Id = associado.Id + 3,
-                Nome = associado.Nome + " Vinícius Souza Ribeiro",
-                CarroId = associado.CarroId + 4
+                Nome = associado.Nome + " Vinícius Souza Ribeiro"
             };
 
             var controller = new AssociadosController(repositoryTest.Object);
@@ -221,7 +209,6 @@ namespace Test.ApiTest
 
             editedAssociado.Id.Should().Be(4);
             editedAssociado.Nome.Should().Be("Arthur Vinícius Souza Ribeiro");
-            editedAssociado.CarroId.Should().Be(26);
         }
 
         [Fact]
@@ -233,9 +220,7 @@ namespace Test.ApiTest
                 Id = 1,
                 Nome = "Arthur",
                 CPF = "12324345613",
-                Telefone = "031 995331227",
-                CarroId = 22,
-                EnderecoId = 22
+                Telefone = "031 995331227"
             };
 
             var repositoryTest = new Mock<IAssociadoApplication>();
@@ -259,9 +244,7 @@ namespace Test.ApiTest
                 Id = 1,
                 Nome = "Arthur",
                 CPF = "12324345613",
-                Telefone = "031 995331227",
-                CarroId = 22,
-                EnderecoId = 22
+                Telefone = "031 995331227"
             };
 
             var repositoryTest = new Mock<IAssociadoApplication>();
@@ -285,9 +268,7 @@ namespace Test.ApiTest
                 Id = 1,
                 Nome = "Arthur",
                 CPF = "12324345613",
-                Telefone = "031 995331227",
-                CarroId = 22,
-                EnderecoId = 22
+                Telefone = "031 995331227"
             };
 
             var repositoryTest = new Mock<IAssociadoApplication>();
@@ -317,9 +298,7 @@ namespace Test.ApiTest
             {
                 Nome = "Arthur Vinícius Souza Ribeiro",
                 CPF = "123434532342",
-                Telefone = "031 995331227",
-                CarroId = 22,
-                EnderecoId = 22
+                Telefone = "031 995331227"
             };
 
             var user = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
@@ -360,9 +339,7 @@ namespace Test.ApiTest
             {
                 Nome = "Arthur Vinícius Souza Ribeiro",
                 CPF = "123434532342",
-                Telefone = "031 995331227",
-                CarroId = 22,
-                EnderecoId = 22
+                Telefone = "031 995331227"
             };
 
             var user = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
@@ -403,9 +380,7 @@ namespace Test.ApiTest
             {
                 Nome = "Arthur Vinícius Souza Ribeiro",
                 CPF = "123434532342",
-                Telefone = "031 995331227",
-                CarroId = 22,
-                EnderecoId = 22
+                Telefone = "031 995331227"
             };
 
             var user = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
@@ -442,18 +417,16 @@ namespace Test.ApiTest
                 Placa = "2541OAX"
             };
 
-            AssociadoDTO associado = new AssociadoDTO()
+            AssociadoDTO associado = new()
             {
                 Nome = "Arthur Vinícius Souza Ribeiro",
                 CPF = "123434532342",
                 Telefone = "031 995331227",
-                CarroId = 22,
-                Carro = new CarroDTO
+                Veiculo = new VeiculoDTO
                 {
                     Placa = "0XAB40",
                     Modelo = "Mercedes Benz",
                 },
-                EnderecoId = 22,
                 Endereco = new EnderecoDTO
                 {
                     CEP = "34156278",
@@ -467,7 +440,7 @@ namespace Test.ApiTest
                 }
             };
 
-            EnderecoDTO newEndereco = new EnderecoDTO()
+            EnderecoDTO newEndereco = new()
             {
                 CEP = "34156278",
                 Rua = associado.Endereco.Rua + " Branco",
@@ -527,13 +500,11 @@ namespace Test.ApiTest
                 Nome = "Arthur Vinícius Souza Ribeiro",
                 CPF = "123434532342",
                 Telefone = "031 995331227",
-                CarroId = 22,
-                Carro = new CarroDTO
+                Veiculo = new VeiculoDTO
                 {
                     Placa = "0XAB40",
                     Modelo = "Mercedes Benz",
                 },
-                EnderecoId = 22,
                 Endereco = new EnderecoDTO
                 {
                     CEP = "34156278",
@@ -600,13 +571,11 @@ namespace Test.ApiTest
                 Nome = "Arthur Vinícius Souza Ribeiro",
                 CPF = "123434532342",
                 Telefone = "031 995331227",
-                CarroId = 22,
-                Carro = new CarroDTO
+                Veiculo = new VeiculoDTO
                 {
                     Placa = "0XAB40",
                     Modelo = "Mercedes Benz",
                 },
-                EnderecoId = 22,
                 Endereco = new EnderecoDTO
                 {
                     CEP = "34156278",

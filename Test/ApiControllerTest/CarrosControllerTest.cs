@@ -6,25 +6,19 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Test.ApiControllerTest
 {
-    public class CarrosControllerTest
+    public class VeiculosControllerTest
     {
         [Fact]
-        public async Task GetCarro_NullCarro_ReturnNotFound()
+        public async Task GetVeiculo_NullVeiculo_ReturnNotFound()
         {
             //Arrange
-            ICarroApplication carro = null;
-            var controller = new CarrosController(carro);
+            IVeiculoApplication veiculo = null;
+            var controller = new VeiculosController(veiculo);
 
             //Act
             var result = await controller.Get(It.IsAny<int>());
@@ -34,21 +28,21 @@ namespace Test.ApiControllerTest
         }
 
         [Fact]
-        public async Task GetCarro_CarroFound_ReturnOk()
+        public async Task GetVeiculo_VeiculoFound_ReturnOk()
         {
             //Arrange
-            CarroDTO carro = new CarroDTO()
+            VeiculoDTO Veiculo = new VeiculoDTO()
             {
                 Placa = "2541OAX",
                 Modelo = "Mercedez Benz"
             };
 
-            var repositoryTest = new Mock<ICarroApplication>();
+            var repositoryTest = new Mock<IVeiculoApplication>();
 
             repositoryTest.Setup(r => r.Get(It.IsAny<int>()))
-                .ReturnsAsync(carro);
+                .ReturnsAsync(Veiculo);
 
-            var controller = new CarrosController(repositoryTest.Object);
+            var controller = new VeiculosController(repositoryTest.Object);
 
             //Act
             var result = await controller.Get(It.IsAny<int>());
@@ -58,20 +52,20 @@ namespace Test.ApiControllerTest
         }
 
         [Fact]
-        public async Task GetAll_AllDatabaseCarros_ReturnOk()
+        public async Task GetAll_AllDatabaseVeiculos_ReturnOk()
         {
             //Arrange
-            List<CarroDTO> listCarros = new List<CarroDTO>();
-            CarroDTO carro = new CarroDTO();
+            List<VeiculoDTO> listVeiculos = new List<VeiculoDTO>();
+            VeiculoDTO Veiculo = new VeiculoDTO();
 
-            listCarros.Add(carro);
+            listVeiculos.Add(Veiculo);
 
-            var repositoryTest = new Mock<ICarroApplication>();
+            var repositoryTest = new Mock<IVeiculoApplication>();
 
             repositoryTest.Setup(r => r.GetAll())
-                .ReturnsAsync(listCarros);
+                .ReturnsAsync(listVeiculos);
 
-            var controller = new CarrosController(repositoryTest.Object);
+            var controller = new VeiculosController(repositoryTest.Object);
 
             //Act
             var result = await controller.GetAll();
@@ -84,16 +78,16 @@ namespace Test.ApiControllerTest
         public async Task GetAll_UnavailableDatabase_ReturnBadRequest()
         {
             //Arrange
-            List<CarroDTO> listCarros = new List<CarroDTO>();
-            CarroDTO carro = new CarroDTO();
+            List<VeiculoDTO> listVeiculos = new List<VeiculoDTO>();
+            VeiculoDTO Veiculo = new VeiculoDTO();
 
-            listCarros.Add(carro);
+            listVeiculos.Add(Veiculo);
 
-            var repositoryTest = new Mock<ICarroApplication>();
+            var repositoryTest = new Mock<IVeiculoApplication>();
             repositoryTest.Setup(r => r.GetAll())
                 .Throws<Exception>();
 
-            var controller = new CarrosController(repositoryTest.Object);
+            var controller = new VeiculosController(repositoryTest.Object);
 
             //Act
             var result = await controller.GetAll();
@@ -103,150 +97,150 @@ namespace Test.ApiControllerTest
         }
 
         [Fact]
-        public async Task CreateCarro_NewCarro_ReturnCreated()
+        public async Task CreateVeiculo_NewVeiculo_ReturnCreated()
         {
             //Arrange
-            var newCarro = new CarroDTO()
+            var newVeiculo = new VeiculoDTO()
             {
                 Id = 1,
                 Placa = "2541OAX",
                 Modelo = "Mercedez Benz"
             };
 
-            var repositoryTest = new Mock<ICarroApplication>();
-            var controller = new CarrosController(repositoryTest.Object);
+            var repositoryTest = new Mock<IVeiculoApplication>();
+            var controller = new VeiculosController(repositoryTest.Object);
 
             //Act
-            var resultado = await controller.Add(newCarro);
+            var resultado = await controller.Add(newVeiculo);
 
             //Assert
             Assert.IsType<HATEOASResult>(resultado);
 
-            newCarro.Id.Should().NotBe(null, "Can't be null.");
-            newCarro.Placa.Should().NotBe(null, "Can't be null.");
-            newCarro.Modelo.Should().NotBeNull();
-            newCarro.Id.Should().Be(1);
-            newCarro.Placa.Should().Be("2541OAX");
-            newCarro.Should().BeOfType<CarroDTO>();
+            newVeiculo.Id.Should().NotBe(null, "Can't be null.");
+            newVeiculo.Placa.Should().NotBe(null, "Can't be null.");
+            newVeiculo.Modelo.Should().NotBeNull();
+            newVeiculo.Id.Should().Be(1);
+            newVeiculo.Placa.Should().Be("2541OAX");
+            newVeiculo.Should().BeOfType<VeiculoDTO>();
         }
 
         [Fact]
-        public async Task CreateCarro_BadObject_ReturnBadrequest()
+        public async Task CreateVeiculo_BadObject_ReturnBadrequest()
         {
             //Arrange
-            ICarroApplication newCarro = null;
-            var controller = new CarrosController(newCarro);
+            IVeiculoApplication newVeiculo = null;
+            var controller = new VeiculosController(newVeiculo);
 
             //Act
-            var result = await controller.Add(It.IsAny<CarroDTO>());
+            var result = await controller.Add(It.IsAny<VeiculoDTO>());
 
             //Assert
             Assert.IsType<BadRequestObjectResult>(result);
         }
 
         [Fact]
-        public void CreateCarro_DataAnnotationTest_ReturnOk()
+        public void CreateVeiculo_DataAnnotationTest_ReturnOk()
         {
             //Assert
-            var newCarro = new CarroDTO()
+            var newVeiculo = new VeiculoDTO()
             {
                 Placa = "2541OAX",
                 Modelo = "Mercedez Benz"
             };
 
             //Act
-            var errors = ValidateObject(newCarro);
+            var errors = ValidateObject(newVeiculo);
 
             //Assert
             Assert.True(errors.Count == 0);
         }
 
         [Fact]
-        public void CreateCarro_DataAnnotationTest_ErrorObjectCarro()
+        public void CreateVeiculo_DataAnnotationTest_ErrorObjectVeiculo()
         {
             //Assert
-            var newCarro = new CarroDTO()
+            var newVeiculo = new VeiculoDTO()
             {
                 Placa = "b",
                 Modelo = ""
             };
 
             //Act
-            var erros = ValidateObject(newCarro);
+            var erros = ValidateObject(newVeiculo);
 
             //Assert
             Assert.True(erros.Count == 2);
         }
 
         [Fact]
-        public async Task EditCarro_Carro_ReturnOk()
+        public async Task EditVeiculo_Veiculo_ReturnOk()
         {
             //Arrange
-            var carro = new CarroDTO()
+            var Veiculo = new VeiculoDTO()
             {
                 Placa = "2541OAX",
                 Modelo = "Mercedez Benz"
             };
 
-            var repositoryTest = new Mock<ICarroApplication>();
-            repositoryTest.Setup(r => r.Edit(It.IsAny<CarroDTO>())).Returns(Task.FromResult(carro));
+            var repositoryTest = new Mock<IVeiculoApplication>();
+            repositoryTest.Setup(r => r.Edit(It.IsAny<VeiculoDTO>())).Returns(Task.FromResult(Veiculo));
 
-            var editedCarro = new CarroDTO()
+            var editedVeiculo = new VeiculoDTO()
             {
-                Id = carro.Id + 3,
-                Placa = carro.Placa + "Y",
-                Modelo = carro.Modelo + "z"
+                Id = Veiculo.Id + 3,
+                Placa = Veiculo.Placa + "Y",
+                Modelo = Veiculo.Modelo + "z"
             };
 
-            var controller = new CarrosController(repositoryTest.Object);
+            var controller = new VeiculosController(repositoryTest.Object);
 
             //Act
-            var result = await controller.Edit(editedCarro);
+            var result = await controller.Edit(editedVeiculo);
 
             //Assert
             result.Should().BeOfType<HATEOASResult>();
 
-            editedCarro.Id.Should().Be(3);
-            editedCarro.Placa.Should().Be("2541OAXY");
-            editedCarro.Modelo.Should().Be("Mercedez Benzz");
+            editedVeiculo.Id.Should().Be(3);
+            editedVeiculo.Placa.Should().Be("2541OAXY");
+            editedVeiculo.Modelo.Should().Be("Mercedez Benzz");
         }
 
         [Fact]
-        public async Task EditCarro_CarroError_ReturBadRequesst()
+        public async Task EditVeiculo_VeiculoError_ReturBadRequesst()
         {
             //Arrange
-            var carro = new CarroDTO()
+            var Veiculo = new VeiculoDTO()
             {
                 Placa = "2541OAX",
                 Modelo = "Mercedez Benz"
             };
 
-            var repositoryTest = new Mock<ICarroApplication>();
-            repositoryTest.Setup(r => r.Edit(carro)).Throws<Exception>();
+            var repositoryTest = new Mock<IVeiculoApplication>();
+            repositoryTest.Setup(r => r.Edit(Veiculo)).Throws<Exception>();
 
-            var controller = new CarrosController(repositoryTest.Object);
+            var controller = new VeiculosController(repositoryTest.Object);
 
             //Act
-            var result = await controller.Edit(carro);
+            var result = await controller.Edit(Veiculo);
 
             //Assert
             result.Should().BeOfType<BadRequestObjectResult>();
         }
 
         [Fact]
-        public async Task DeleteCarro_Carro_ReturnOk()
+        public async Task DeleteVeiculo_Veiculo_ReturnOk()
         {
             //Arrange
-            var carro = new CarroDTO()
+            var Veiculo = new VeiculoDTO()
             {
                 Placa = "2541OAX",
                 Modelo = "Mercedez Benz"
             };
 
-            var repositoryTest = new Mock<ICarroApplication>();
-            repositoryTest.Setup(r => r.Delete(It.IsAny<int>())).Returns(Task.FromResult(carro));
+            var repositoryTest = new Mock<IVeiculoApplication>();
+            repositoryTest.Setup(r => r.Delete(It.IsAny<int>())).Returns(Task.FromResult(Veiculo));
 
-            var controller = new CarrosController(repositoryTest.Object);
+            var controller = new VeiculosController(repositoryTest.Object);
 
             //Act
             var resultado = await controller.Remove(It.IsAny<int>());
@@ -256,19 +250,19 @@ namespace Test.ApiControllerTest
         }
 
         [Fact]
-        public async Task DeleteCarro_CarroNotFound_ReturnNotFound()
+        public async Task DeleteVeiculo_VeiculoNotFound_ReturnNotFound()
         {
             //Arrange
-            var carro = new CarroDTO()
+            var Veiculo = new VeiculoDTO()
             {
                 Placa = "2541OAX",
                 Modelo = "Mercedez Benz"
             };
 
-            var repositoryTest = new Mock<ICarroApplication>();
+            var repositoryTest = new Mock<IVeiculoApplication>();
             repositoryTest.Setup(r => r.Delete(It.IsAny<int>())).Throws<Exception>();
 
-            var controller = new CarrosController(repositoryTest.Object);
+            var controller = new VeiculosController(repositoryTest.Object);
 
             //Act
             var resultado = await controller.Remove(It.IsAny<int>());
@@ -277,11 +271,11 @@ namespace Test.ApiControllerTest
             resultado.Should().BeOfType<NotFoundObjectResult>();
         }
 
-        private static IList<ValidationResult> ValidateObject(CarroDTO CarroDTO)
+        private static IList<ValidationResult> ValidateObject(VeiculoDTO VeiculoDTO)
         {
             var validate = new List<ValidationResult>();
-            var context = new ValidationContext(CarroDTO, null, null);
-            Validator.TryValidateObject(CarroDTO, context, validate, true);
+            var context = new ValidationContext(VeiculoDTO, null, null);
+            Validator.TryValidateObject(VeiculoDTO, context, validate, true);
             return validate;
         }
     }
