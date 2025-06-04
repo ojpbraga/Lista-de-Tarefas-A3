@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{9B65D371-69B6-4534-8A5A-536791EB8689}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CadastroServices", "Services\CadastroServices.csproj", "{9B65D371-69B6-4534-8A5A-536791EB8689}"
 	ProjectSection(ProjectDependencies) = postProject
 		{994F8D52-75C8-4AFF-AD18-5AEAB6A11C51} = {994F8D52-75C8-4AFF-AD18-5AEAB6A11C51}
 	EndProjectSection
