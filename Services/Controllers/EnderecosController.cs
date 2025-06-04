@@ -47,13 +47,14 @@ namespace CadastroWebApi.Controllers
         }
 
         [HttpPut(Name = "Edit-Endereco")]
-        [Authorize(Roles = "Admin")]
+        [AllowAnonymous]
         public async Task<IActionResult> Edit(EnderecoDTO enderecoDTO)
         {
             try
             {
-                await _enderecoApplication.Edit(enderecoDTO);
-                await _enderecoApplication.Save();
+                var associado = User.Identity.Name;
+
+                await _enderecoApplication.EditByPlaca(enderecoDTO, associado);
                 return this.HATEOASResult(null, (a) => this.Ok("Dados atualizados com sucesso!"));
             }
             catch (Exception ex)

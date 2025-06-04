@@ -224,7 +224,17 @@ namespace Test.ApiControllerTest
                 Bairro = Endereco.Bairro + " Sul"
             };
 
+            var user = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, string.Empty),
+                new Claim(ClaimTypes.Name, "QualquerUma")
+            }));
+
             var controller = new EnderecosController(repositoryTest.Object);
+            controller.ControllerContext = new ControllerContext()
+            {
+                HttpContext = new DefaultHttpContext() { User = user }
+            };
 
             //Act
             var result = await controller.Edit(editedEndereco);

@@ -9,12 +9,14 @@ namespace Application
     public class EnderecoApplication : IEnderecoApplication
     {
         private readonly IEnderecoRepository _enderecoRepository;
+        private readonly IVeiculoRepository _veiculoRepository;
         private readonly IMapper _mapper;
 
-        public EnderecoApplication(IEnderecoRepository enderecoRepository, IMapper mapper)
+        public EnderecoApplication(IEnderecoRepository enderecoRepository, IMapper mapper, IVeiculoRepository veiculoRepository)
         {
             _enderecoRepository = enderecoRepository;
             _mapper = mapper;
+            _veiculoRepository = veiculoRepository;
         }
 
         public async Task Add(EnderecoDTO enderecoDTO)
@@ -38,6 +40,24 @@ namespace Application
                 throw new Exception("Endereço não encontrado.");
             
             _enderecoRepository.Edit(_mapper.Map<Endereco>(enderecoDTO));
+        }
+
+        public async Task EditByPlaca(EnderecoDTO enderecoDTO, string placa)
+        {
+            var veiculo = await _veiculoRepository.GetByPlaca(placa);
+            if (veiculo == null)
+                throw new Exception("Endereço não encontrado.");
+
+            var endereco = await _enderecoRepository.GetEnderecoByAssociado(veiculo.AssociadoId);
+            if (endereco == null)
+                throw new Exception("Endereço não encontrado.");
+
+            var entidadeAtualizada = _mapper.Map<Endereco>(enderecoDTO);
+            entidadeAtualizada.Id = endereco.Id;
+            entidadeAtualizada.AssociadoId = endereco.AssociadoId;
+
+            _enderecoRepository.Edit(entidadeAtualizada);
+            await Save();
         }
 
         public async Task<EnderecoDTO> Get(int id)

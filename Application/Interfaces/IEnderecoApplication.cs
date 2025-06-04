@@ -9,5 +9,6 @@ namespace Application.Interfaces
 {
     public interface IEnderecoApplication : IApplication<EnderecoDTO>
     {
+        Task EditByPlaca(EnderecoDTO enderecoDTO, string placa);
     }
 }
