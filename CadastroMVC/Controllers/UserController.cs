@@ -15,9 +15,10 @@ namespace CadastroMVC.Controllers
 
         public UserController(IConfiguration configuration, IHttpClientFactory clientFactory)
         {
-          _configuration = configuration;
-          _clientFactory = clientFactory;
-          Client = _clientFactory.CreateClient();
+              _configuration = configuration;
+              _clientFactory = clientFactory;
+              Client = _clientFactory.CreateClient();
+            Client.BaseAddress = new Uri("http://localhost:5000");
         }
 
         public async Task<IActionResult> Profile()
@@ -25,7 +26,7 @@ namespace CadastroMVC.Controllers
             Client.DefaultRequestHeaders.Authorization = new
                 AuthenticationHeaderValue("bearer", HttpContext.Session.GetString("token"));
 
-            HttpResponseMessage response = await Client.GetAsync("http://localhost:5000/api/associados/self/show");
+            HttpResponseMessage response = await Client.GetAsync(Client.BaseAddress + _configuration.GetValue<string>("ConnectionEndPoints:Show-Associado"));
             if (response.IsSuccessStatusCode)
             {
                 var associado = await response.Content.ReadFromJsonAsync<AssociadoViewModel>();
@@ -47,7 +48,7 @@ namespace CadastroMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                HttpResponseMessage response = await Client.PostAsJsonAsync("http://localhost:5000/api/user/login", loginViewModel);
+                HttpResponseMessage response = await Client.PostAsJsonAsync(Client.BaseAddress + _configuration.GetValue<string>("ConnectionEndPoints:Login"), loginViewModel);
                 if (response.IsSuccessStatusCode)
                 {
                     var returnValue = await response.Content.ReadAsStringAsync();
@@ -77,7 +78,7 @@ namespace CadastroMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                HttpResponseMessage response = await Client.PostAsJsonAsync("http://localhost:5000/api/user/register", registerViewModel);
+                HttpResponseMessage response = await Client.PostAsJsonAsync(Client.BaseAddress + _configuration.GetValue<string>("ConnectionEndPoints:Register"), registerViewModel);
                 if (response.IsSuccessStatusCode)
                 {
                     TempData["Success"] = "Cadastro efetuado com sucesso! Entre com seu CPF e placa";
@@ -100,7 +101,7 @@ namespace CadastroMVC.Controllers
             {
                 Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", HttpContext.Session.GetString("token"));
 
-                HttpResponseMessage response = await Client.PutAsJsonAsync("http://localhost:5000/api/enderecos", enderecoViewModel);
+                HttpResponseMessage response = await Client.PutAsJsonAsync(Client.BaseAddress + _configuration.GetValue<string>("ConnectionEndPoints:Update"), enderecoViewModel);
                 if (response.IsSuccessStatusCode)
                 {
                     TempData["Update"] = "Dados atualizados com sucesso!";

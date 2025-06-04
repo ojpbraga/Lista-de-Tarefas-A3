@@ -16,6 +16,7 @@ namespace CadastroMVC.Models.ViewModel
         [Required(ErrorMessage = "O campo 'CPF' não pode estar vazio.")]
         [Display(Name = "CPF")]
         [StringLength(50, ErrorMessage = "Digite um CPF válido.", MinimumLength = 11)]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Somente números são permitidos")]
         public string CPF { get; set; }
 
         [Required(ErrorMessage = "O campo 'Telefone' não pode estar vazio.")]
@@ -23,6 +24,7 @@ namespace CadastroMVC.Models.ViewModel
         [Display(Name = "Telefone")]
         [StringLength(70, ErrorMessage = "Digite um telefone válido.", MinimumLength = 8)]
         [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Somente números são permitidos")]
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "O campo 'Placa' não pode estar vazio.")]
