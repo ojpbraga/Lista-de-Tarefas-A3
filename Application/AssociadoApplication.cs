@@ -45,32 +45,26 @@ namespace Application
         {
             var associado = await _associadoRepository.Find(associadoDTO.Id);
             if (!_associadoRepository.Exist(associado.Id))
-            {
                 throw new Exception("Produto não encontrado.");
-            }
-            else
-                _associadoRepository.Edit(_mapper.Map<Associado>(associadoDTO));
+
+            _associadoRepository.Edit(_mapper.Map<Associado>(associadoDTO));
         }
 
         public async Task<AssociadoDTO> Get(int id)
         {
-            if (_associadoRepository.Exist(id))
-            {
-                return _mapper.Map<AssociadoDTO>(await _associadoRepository.Get(id));
-            }
-            else
+            if (!_associadoRepository.Exist(id))
                 throw new Exception("Associado não encontrado.");
+
+            return _mapper.Map<AssociadoDTO>(await _associadoRepository.Get(id));
         }
 
         public async Task<List<AssociadoDTO>> GetAll()
         {
             var result = _mapper.Map<List<AssociadoDTO>>(await _associadoRepository.GetAll());
             if(result == null)
-            {
                 throw new Exception("Nenhum dado encontrado.");
-            }
-            else
-                return result;
+
+            return result;
         }
 
         public async Task<AssociadoDTO> GetByPlaca(string placa)
