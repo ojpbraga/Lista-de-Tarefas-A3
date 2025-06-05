@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Cadastro";
+    ViewData["BodyClass"] = "pagina-cadastro";
 }
 
 <div class="text-center">
@@ -8,3 +9,7 @@
 </div>
 
 @Html.Partial("_Register")
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/cadastro.css" asp-append-version="true" />
+}

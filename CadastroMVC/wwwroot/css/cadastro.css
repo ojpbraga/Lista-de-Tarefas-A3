@@ -1,0 +1,107 @@
+body.pagina-cadastro {
+    position: relative;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: flex-start;   /* alinhado ao topo, não mais centralizado verticalmente */
+    align-items: center;           /* centralizado horizontalmente */
+    min-height: 100vh;
+    margin: 0;
+    color: #fff;
+    overflow-y: auto;
+    flex-direction: column;
+    padding-top: 40px;             /* espaço para não cortar no topo */
+}
+
+body.pagina-cadastro::before {
+    content: "";
+    position: fixed;
+    top: 15px;      /* Distância do topo - ajusta a borda */
+    left: 15px;     /* Distância da esquerda */
+    right: 15px;    /* Distância da direita */
+    bottom: 15px;   /* Distância da base */
+    background: url('/img/imagem.png') no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(4px); /* Desfoque da imagem */
+    z-index: -1;
+    border-radius: 20px; /* Bordas arredondadas na imagem */
+}
+
+/* Ajuste para o container do título acima do formulário */
+body.pagina-cadastro .text-center {
+    max-width: 420px;
+    width: 100%;
+    margin: 0 auto 30px auto; /* centraliza e separa do formulário */
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+body.pagina-cadastro .text-center h1.display-4 {
+    font-size: 1.8rem;    /* tamanho reduzido para não ficar gigante */
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #fff;          /* mantém a cor branca */
+}
+
+body.pagina-cadastro .text-center p {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+body.pagina-cadastro .main-cadastro {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+/* Container interno do formulário */
+body.pagina-cadastro .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+}
+
+body.pagina-cadastro .login-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    text-align: center;
+    color: #333;
+    box-sizing: border-box;
+}
+
+body.pagina-cadastro .login-card input,
+body.pagina-cadastro .login-card select,
+body.pagina-cadastro .login-card textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    padding: 12px 16px;  /* <-- aumenta o espaço interno */
+}
+
+body.pagina-cadastro button,
+body.pagina-cadastro input[type="submit"] {
+    background: #1b6ec2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+    max-width: 100%;
+}
+
+body.pagina-cadastro button:hover,
+body.pagina-cadastro input[type="submit"]:hover {
+    background: #155fa0;
+}

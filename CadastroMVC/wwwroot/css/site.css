@@ -1,18 +1,130 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+    background-color: white; /* Borda branca ao redor da imagem */
+    position: relative;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+    overflow: hidden;
+    background: none;
 }
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 15px;      /* Distância do topo - ajusta a borda */
+    left: 15px;     /* Distância da esquerda */
+    right: 15px;    /* Distância da direita */
+    bottom: 15px;   /* Distância da base */
+    background: url('/img/imagem.png') no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(4px); /* Desfoque da imagem */
+    z-index: -1;
+    border-radius: 20px; /* Bordas arredondadas na imagem */
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.login-card {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 20px; /* Cantos arredondados */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-card h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Imagem de perfil no topo */
+.login-card .profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 30%;
+    object-fit: cover;
+    margin: 0 auto 20px auto; /* Centraliza e espaçamento inferior */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: block;
+    background-color: #e5e5e5; /* Fundo acinzentado da imagem de perfil */
+}
+
+.login-card label {
+    display: block;
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 10px 0 5px;
+    color: #555;
+}
+
+/* Apenas campos de entrada CPF e Placa com fundo cinza */
+.login-card input.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    outline: none;
+    background-color: #e5e5e5; /* Fundo cinza claro */
+}
+
+.login-card .input-group {
+    position: relative;
+    width: 100%;
+}
+
+.login-card .input-group button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #333;
+    border: none;
+    color: #fff;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-card .input-group button:hover {
+    background: #555;
+}
+
+.register-link {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666;
+}
+
+.register-link a {
+    color: #1b6ec2;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+
