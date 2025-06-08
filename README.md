@@ -2,6 +2,7 @@
 🎓 Projeto A3 - Refatoração de Código - Seguradora Pro Auto
 
 Agora o processo de execução do projeto está muito mais simples e direto! Siga os passos abaixo para rodar o sistema completo (frontend + backend) utilizando o Visual Studio Code e o terminal. 🖥️💻
+Link do código usado para refatoração: <a href="https://github.com/Raphsodyz/TesteProAuto">TesteProAuto</a>
 
 ✅ Passos para iniciar o projeto:
 1️⃣ Inicie o Frontend
