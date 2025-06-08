@@ -331,6 +331,16 @@ label {
 .login-register-div a, p {
     margin: 0;
 }
+.alert-success {
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgb(69, 162, 69);
+}
+.alert-danger {
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgb(207, 58, 58);
+}
 
 /* Footer */
 footer {

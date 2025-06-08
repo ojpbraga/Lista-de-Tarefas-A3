@@ -64,6 +64,19 @@
                 <img src="../img/womam.png" alt="">
             </div>
 
+            @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success">
+                        @TempData["Success"] ✅
+                    </div>
+                }
+                @if (TempData["Unauthorized"] != null)
+                {
+                    <div class="alert alert-danger">
+                        @TempData["Unauthorized"] ⚠️
+                    </div>
+                }
+
             <div class="login-container-inputs-div">
                 <div class="login-input-div">
                     <label asp-validation-for="CPF" class="text-danger">CPF</label>
@@ -83,18 +96,6 @@
                 <a asp-action="Register">Registre-se</a>
             </div>
 
-                @if (TempData["Success"] != null)
-                {
-                    <div class="alert alert-success">
-                        @TempData["Success"]
-                    </div>
-                }
-                @if (TempData["Unauthorized"] != null)
-                {
-                    <div class="alert alert-danger">
-                        @TempData["Unauthorized"]
-                    </div>
-                }
         </div>
 
     </form>
