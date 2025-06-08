@@ -271,8 +271,17 @@ header {
 .login-input-div {
     display: grid;
 }
+.login-input-div div {
+    display: flex !important;
+    width: 100%;
+}
+.login-input-div div span {
+    font-size: 0.8rem;
+    font-weight: 600;
+    flex-grow: 1;
+    color: #b83b3b;
+}
 label {
-    display: grid;
     font-size: 0.8rem;
     font-weight: 600;
 }

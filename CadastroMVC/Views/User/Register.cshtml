@@ -31,59 +31,95 @@
                 <div class="container-inputs-div">
                     <div>
                         <div class="login-input-div">
-                                    <label asp-for="Nome" for="">Nome</label>
-                                    <input required asp-for="Nome" class="form-control" placeholder="Seu nome" type="text" placeholder="000.000.000-00" >
+                            <div>
+                                <label asp-for="Nome" for="">Nome</label>
+                                <span asp-validation-for="Nome" class="text-danger"></span>
+                            </div>
+                            <input required asp-for="Nome" class="form-control" placeholder="Seu nome" type="text" placeholder="000.000.000-00" >
                         </div>
                         <div class="login-input-div">
-                                    <label asp-for="CPF">CPF</label>
-                                    <input required asp-for="CPF" type="text" placeholder="000.000.000-00">
+                            <div>
+                                <label asp-for="CPF">CPF</label>
+                                <span asp-validation-for="CPF" class="text-danger"></span>
+                            </div>
+                            <input required asp-for="CPF" type="text" placeholder="000.000.000-00">
                         </div>
                         <div class="login-input-div">
-                                    <label asp-for="Telefone" for="">Telefone</label>
-                                    <input required asp-for="Telefone" type="tel" placeholder="99 99999 9999">
+                            <div>
+                                <label asp-for="Telefone" for="">Telefone</label>
+                                <span asp-validation-for="Telefone" class="text-danger"></span>
+                            </div>
+                            <input required asp-for="Telefone" type="tel" placeholder="99 99999 9999">
                         </div>
                         <div class="login-input-div">
-                                    <label asp-for="Placa">Placa</label>
-                                    <input required asp-for="Placa" type="text" placeholder="AAA-1234">
+                            <div>
+                                <label asp-for="Placa">Placa</label>
+                                <span asp-validation-for="Placa" class="text-danger"></span>
+                            </div>
+                            <input required asp-for="Placa" type="text" placeholder="AAA-1234">
                         </div>
                         <div class="login-input-div">
-                                    <label asp-for="Modelo">Modelo</label>
-                                    <input required asp-for="Modelo" type="text" placeholder="">
+                            <div>
+                                <label asp-for="Modelo">Veículo</label>
+                                <span asp-validation-for="Modelo" class="text-danger"></span>
+                            </div>
+                            <input required asp-for="Modelo" type="text" placeholder="">
                         </div>
                         <div class="login-input-div">
-                                    <label asp-for="CEP" for="">CEP</label>
-                                    <input required asp-for="CEP" type="text" placeholder="00000-00">
+                            <div>
+                                <label asp-for="CEP" for="">CEP</label>
+                                <span asp-validation-for="CEP" class="text-danger"></span>
+                            </div>
+                            <input required asp-for="CEP" type="text" placeholder="00000-00">
                         </div>
             
                     </div>
                     <div>
                         <div class="login-input-div">
-                                    <label asp-for="Rua" for="">Rua</label>
-                                    <input required asp-for="Rua" type="text" placeholder="">
+                            <div>
+                                <label asp-for="Rua" for="">Rua</label>
+                                <span asp-validation-for="Rua" class="text-danger"></span>
+                            </div>
+                            <input required asp-for="Rua" type="text" placeholder="">
                         </div>
                         <div class="login-input-div">
-                                    <label asp-for="Numero">Número</label>
-                                    <input type="text" placeholder="">
+                            <div>
+                                <label asp-for="Numero">Número</label>
+                                <span asp-validation-for="Numero" class="text-danger"></span>
+                            </div>
+                            <input type="text" placeholder="">
                         </div>
                         <div class="login-input-div">
-                                    <label asp-for="Bairro">Bairro</label>
-                                    <input required asp-for="Bairro" type="text" placeholder="">
+                            <div>
+                                <label asp-for="Bairro">Bairro</label>
+                                <span asp-validation-for="Bairro" class="text-danger"></span>
+                            </div>
+                            <input required asp-for="Bairro" type="text" placeholder="">
                         </div>
                         <div class="login-input-div">
-                                    <label asp-for="Cidade">Cidade</label>
-                                    <input required asp-for="Cidade" type="text" placeholder="">
+                            <div>
+                                <label asp-for="Cidade">Cidade</label>
+                                <span asp-validation-for="Cidade" class="text-danger"></span>
+                            </div>
+                            <input required asp-for="Cidade" type="text" placeholder="">
                         </div>
                         <div class="login-input-div">
-                                    <label asp-for="Estado" >Estado</label>
-                                    <input asp-for="Estado" type="text" placeholder="">
+                            <div>
+                                <label asp-for="Estado" >Estado</label>
+                                <span asp-validation-for="Estado" class="text-danger"></span>
+                            </div>
+                                <input asp-for="Estado" type="text" placeholder="" required>
                         </div>
                         <div class="login-input-div">
-                                    <label asp-for="Pais">País</label>
-                                    <input required asp-for="Pais" type="text" placeholder="">
+                            <div>
+                                <label asp-for="Pais">País</label>
+                                <span asp-validation-for="Pais" class="text-danger"></span>
+                            </div>
+                            <input required asp-for="Pais" type="text" placeholder="">
                         </div>
                     </div>
                 </div>
-                <input asp-for="Observacao" id="wellcome-obsevation-input" placeholder="Observação"></input>
+                <input asp-for="Observacao" id="wellcome-obsevation-input" placeholder="Observação"><span asp-validation-for="Observacao" class="text-danger"></span></input>
         
         
                 <button type="submit" value="Registrar">Cadastrar</button>
