@@ -3,11 +3,97 @@
     ViewData["BodyClass"] = "pagina-cadastro";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Agradecemos seu interesse em se tornar um de nossos associados</h1>
-    <p>Preencha o formulário a seguir:</p>
-</div>
+@model CadastroMVC.Models.ViewModel.RegisterViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    
+    <main>
+        <div id="container-main-div">
+            <div class="container-image-div">
+            </div>
+    
+            <form asp-action="SubmitRegister" class="container-wellcome-div">
+                <div class="wellcome-description-div">
+                    <h1>Bem Vindo a ProAuto</h1>
+                    <p>Siga em frente para obter o melhor dos nossos serviços exclusivos!</p>
+                </div>
+
+                
+                <div class="container-inputs-div">
+                    <div>
+                        <div class="login-input-div">
+                                    <label asp-for="Nome" for="">Nome</label>
+                                    <input required asp-for="Nome" class="form-control" placeholder="Seu nome" type="text" placeholder="000.000.000-00" >
+                        </div>
+                        <div class="login-input-div">
+                                    <label asp-for="CPF">CPF</label>
+                                    <input required asp-for="CPF" type="text" placeholder="000.000.000-00">
+                        </div>
+                        <div class="login-input-div">
+                                    <label asp-for="Telefone" for="">Telefone</label>
+                                    <input required asp-for="Telefone" type="tel" placeholder="99 99999 9999">
+                        </div>
+                        <div class="login-input-div">
+                                    <label asp-for="Placa">Placa</label>
+                                    <input required asp-for="Placa" type="text" placeholder="AAA-1234">
+                        </div>
+                        <div class="login-input-div">
+                                    <label asp-for="Modelo">Modelo</label>
+                                    <input required asp-for="Modelo" type="text" placeholder="">
+                        </div>
+                        <div class="login-input-div">
+                                    <label asp-for="CEP" for="">CEP</label>
+                                    <input required asp-for="CEP" type="text" placeholder="00000-00">
+                        </div>
+            
+                    </div>
+                    <div>
+                        <div class="login-input-div">
+                                    <label asp-for="Rua" for="">Rua</label>
+                                    <input required asp-for="Rua" type="text" placeholder="">
+                        </div>
+                        <div class="login-input-div">
+                                    <label asp-for="Numero">Número</label>
+                                    <input type="text" placeholder="">
+                        </div>
+                        <div class="login-input-div">
+                                    <label asp-for="Bairro">Bairro</label>
+                                    <input required asp-for="Bairro" type="text" placeholder="">
+                        </div>
+                        <div class="login-input-div">
+                                    <label asp-for="Cidade">Cidade</label>
+                                    <input required asp-for="Cidade" type="text" placeholder="">
+                        </div>
+                        <div class="login-input-div">
+                                    <label asp-for="Estado" >Estado</label>
+                                    <input asp-for="Estado" type="text" placeholder="">
+                        </div>
+                        <div class="login-input-div">
+                                    <label asp-for="Pais">País</label>
+                                    <input required asp-for="Pais" type="text" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <input asp-for="Observacao" id="wellcome-obsevation-input" placeholder="Observação"></input>
+        
+        
+                <button type="submit" value="Registrar">Cadastrar</button>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/cadastro.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/register.css" asp-append-version="true" />
 }
