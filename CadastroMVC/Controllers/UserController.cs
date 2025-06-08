@@ -18,7 +18,7 @@ namespace CadastroMVC.Controllers
               _configuration = configuration;
               _clientFactory = clientFactory;
               Client = _clientFactory.CreateClient();
-            Client.BaseAddress = new Uri("http://localhost:7000");
+            Client.BaseAddress = new Uri("http://localhost:5000");
         }
 
         public async Task<IActionResult> Profile()
