@@ -30,7 +30,11 @@ https://localhost:7191/swagger
 
 
 Images
+![WhatsApp Image 2025-06-08 at 18 22 25](https://github.com/user-attachments/assets/46a1ab86-fb22-4887-ae4d-a11d976fc8cf)
 
 ![WhatsApp Image 2025-06-08 at 18 21 07](https://github.com/user-attachments/assets/2395aa1a-cb4b-4d89-83dc-76de74d1dd1a)
 
+![WhatsApp Image 2025-06-08 at 18 22 01](https://github.com/user-attachments/assets/9779802c-5a0f-49f6-add5-ea365e5a29be)
+
+![WhatsApp Image 2025-06-08 at 18 21 15](https://github.com/user-attachments/assets/443c9171-6afe-498b-ab81-f2c6eac928f3)
 
