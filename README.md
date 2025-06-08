@@ -27,3 +27,10 @@ Você poderá acessar a aplicação pelo navegador e, se quiser testar a API, v�
 https://localhost:7191/swagger
 
 💡 Dica: Mantenha os dois terminais abertos para garantir que frontend e backend funcionem simultaneamente.
+
+
+Images
+![print](WhatsApp Image 2025-06-08 at 18.21.07.jpeg)
+![print](WhatsApp Image 2025-06-08 at 18.21.15.jpeg)
+![print](WhatsApp Image 2025-06-08 at 18.22.01.jpeg)
+![print](WhatsApp Image 2025-06-08 at 18.22.25.jpeg)
