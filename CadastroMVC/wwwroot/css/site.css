@@ -52,6 +52,15 @@ header {
     text-decoration: none;
     cursor: not-allowed;
 }
+.header-logo-div {
+    display: flex;
+}
+.header-logo-div p {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-left: 20px;
+}
 
 .container-apresentation-section {
     display: grid;

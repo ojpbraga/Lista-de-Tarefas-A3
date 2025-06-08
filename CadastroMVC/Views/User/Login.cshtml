@@ -1,36 +1,11 @@
-﻿@* <div class="login-container">
-    <div class="login-card">
-
-        <!-- Adiciona a imagem de perfil no topo -->
-        <img src="~/img/imagem_2.png" alt="Perfil" class="profile-img">
-
-        <h1>Bem-vindo(a) de volta!</h1>
-        <p>Digite seu <strong>CPF</strong> e <strong>Placa</strong> para acesso.</p>
-
-        @if (TempData["Success"] != null)
-        {
-            <div class="alert alert-success">
-                @TempData["Success"]
-            </div>
-        }
-        @if (TempData["Unauthorized"] != null)
-        {
-            <div class="alert alert-danger">
-                @TempData["Unauthorized"]
-            </div>
-        }
-
-        @Html.Partial("_LoginPartial")
-
-        <p class="register-link">Ou clique <a asp-action="Register">aqui</a> para se registrar!</p>
-    </div>
-</div> *@
-
+﻿
 @model CadastroMVC.Models.ViewModel.LoginViewModel
 
 <header>
         <div class="container-header">
-            <div>Logo</div>
+            <div class="header-logo-div">
+                <p>ProAuto</p>
+            </div>
             <div class="header-link-a">
                 <a href="">Contratação</a>
                 <a href="">Localidades</a>
