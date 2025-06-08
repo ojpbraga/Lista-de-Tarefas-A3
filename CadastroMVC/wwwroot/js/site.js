@@ -2,3 +2,9 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+document.getElementById("service-button-div").addEventListener("click", function() {
+    document.getElementById("container-login-div").style.display = "grid";
+});
+document.getElementsByClassName("header-button-div")[0].addEventListener("click", function() {
+    document.getElementById("container-login-div").style.display = "grid";
+});

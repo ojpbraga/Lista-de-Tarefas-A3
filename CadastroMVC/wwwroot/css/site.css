@@ -1,130 +1,330 @@
 body {
-    background-color: white; /* Borda branca ao redor da imagem */
-    position: relative;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
-    color: #333;
-    overflow: hidden;
-    background: none;
+    font-family: Inter;
 }
 
-body::before {
-    content: "";
+header {
     position: fixed;
-    top: 15px;      /* Distância do topo - ajusta a borda */
-    left: 15px;     /* Distância da esquerda */
-    right: 15px;    /* Distância da direita */
-    bottom: 15px;   /* Distância da base */
-    background: url('/img/imagem.png') no-repeat center center fixed;
-    background-size: cover;
-    filter: blur(4px); /* Desfoque da imagem */
-    z-index: -1;
-    border-radius: 20px; /* Bordas arredondadas na imagem */
+    top: 50px;
+    height: 50px;
+    width: 100vw;
+    z-index: 1000;
+}
+.container-header {
+    height: 50px;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 100px;
+    max-width: 1220px;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(77, 77, 77, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 4px;
+}
+.header-button-div {
+    background: #4D4D4D;
+    padding: 10px 30px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    cursor: pointer;
+    z-index: 2;
+}
+.header-button-div p {
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+.header-link-a {
+    display: flex;
+    justify-content: space-between;
+    width: 30vw;
+    max-width: 550px;
+}
+.header-link-a a {
+    color: #fff;
+    text-decoration: none;
+    cursor: not-allowed;
 }
 
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.container-apresentation-section {
+    display: grid;
     position: relative;
+    align-items: end;
+    justify-items: end;
+    margin: 0 auto;
+    margin-top: 20px;
+    background-image: url('../img/image.png');
+    background-size: cover;      /* ou contain */
+    background-position: center; /* centraliza a imagem */
+    background-repeat: no-repeat;
+    height: 42vw;
+    width: 90vw;
+    border-radius: 30px;
+    box-sizing: border-box;
+    padding: 30px;
+    overflow: hidden;
+    max-width: 1920px;
+    max-height: 1080px;
     z-index: 1;
 }
 
-.login-card {
-    background: white;
-    padding: 20px 30px;
-    border-radius: 20px; /* Cantos arredondados */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
-    color: #333;
+.container-service {
     display: flex;
     flex-direction: column;
+    height: 320px;
+    width: 420px;
+    background: #1E1E1E;
+    border-radius: 30px;
+    padding: 30px;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+#service-tag-div {
+    display: flex;
     align-items: center;
+    justify-items: center;
+    gap: 8px;
 }
-
-.login-card h1 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #333;
+#service-tag-div div {
+    background: #fff;
+    border-radius: 100px;
+    width: 10px;
+    height: 10px;
 }
-
-/* Imagem de perfil no topo */
-.login-card .profile-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 30%;
-    object-fit: cover;
-    margin: 0 auto 20px auto; /* Centraliza e espaçamento inferior */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    display: block;
-    background-color: #e5e5e5; /* Fundo acinzentado da imagem de perfil */
-}
-
-.login-card label {
-    display: block;
-    text-align: left;
-    font-size: 12px;
-    font-weight: bold;
-    margin: 10px 0 5px;
-    color: #555;
-}
-
-/* Apenas campos de entrada CPF e Placa com fundo cinza */
-.login-card input.form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 14px;
-    margin-bottom: 10px;
-    outline: none;
-    background-color: #e5e5e5; /* Fundo cinza claro */
-}
-
-.login-card .input-group {
-    position: relative;
-    width: 100%;
-}
-
-.login-card .input-group button {
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #333;
-    border: none;
+#service-tag-div p {
     color: #fff;
-    padding: 8px;
-    border-radius: 6px;
+    margin: 0;
+}
+#service-title-h2 {
+    font-size: 3rem;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: 1.4px;
+}
+
+#service-button-div {
+    display: flex;
+    background: #D9D9D9;
+    width: 100%;
+    height: 50px;
+    border-radius: 100px;
+    justify-content: space-between;
+    padding: 4px;
+    box-sizing: border-box;
+    align-items: center;
+    overflow: hidden;
     cursor: pointer;
-    transition: background 0.3s ease;
+    z-index: 1;
+
+}
+#service-button-div div {
+    display: grid;
+    place-items: center;
+    background: #fff;
+    width: 20%;
+    height: 100%;
+    border-radius: 100px;
+}
+#service-button-div p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-left: 15px;
+    text-transform: uppercase;
 }
 
-.login-card .input-group button:hover {
-    background: #555;
-}
-
-.register-link {
-    margin-top: 10px;
-    font-size: 12px;
-    color: #666;
-}
-
-.register-link a {
-    color: #1b6ec2;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.register-link a:hover {
-    text-decoration: underline;
+#container-layout-div {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    height: 150px;
+    width: 500px;
+    background: transparent;
+    border-radius: 30px 0 0 0;
+    border: 5px solid #fff;
 }
 
 
+/* Sobre a empresa */
+.container-about-us-section {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 20px;
+    height: 700px;
+    width: 90vw;
+    max-width: 1920px;
+    overflow: hidden;
+    gap: 70px;
+}
+
+.about-us-tag-div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 30px;
+    margin-top: 40px;
+}
+.about-us-tag-div div {
+    background: #4D4D4D;
+    width: 10px;
+    height: 10px;
+    border-radius: 100px;
+}
+.about-us-tag-div p {
+    color: #4D4D4D;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.about-us-description-div {
+    display: grid;
+    width: 100%;
+}
+.about-us-description-div p {
+    font-size: 4rem;
+    font-weight: 500;
+    width: 900px;
+    margin: 0;
+}
+.about-us-description-div img {
+    position: absolute;
+    bottom: -120px;
+    right: 0px;
+}
+/* Divs de layout */
+.about-us-container-div {
+    display: flex;
+    /* position: absolute;
+    width: 70%;
+    height: 10%;
+    background: #4D4D4D;
+    z-index: -1; */
+    position: absolute;
+    width: 100%;
+    height: 200%;
+
+}
+#container-layout-1-div {
+    position: relative;
+    background: transparent;
+    border: 5px solid #1E1E1E;
+    border-top: 0;
+    border-right: 0;
+    border-radius: 0 0 0 30px;
+    width: 40%;
+    height: 100px;
+    
+}
+#container-layout-2-div {
+    background: transparent;
+    border: 5px solid #1E1E1E;
+    border-radius: 0 30px 0 0;
+    flex-grow: 1;
+    border-left: 0;
+    margin-top: 100px;
+    margin-right: 400px;
+}
+
+/* Login */
+#container-login-div {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 100;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(77, 77, 77, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    place-items: center;
+}
+#login-container-div {
+    display: grid;
+    place-items: center;
+    margin: 22vh;
+    background: #fff;
+    height: 500px;
+    width: 400px;
+    border-radius: 30px;
+}
+#login-background-image-div {
+    display: flex;
+
+    overflow: hidden;
+    background-color: #D9D9D9;
+    border-radius: 30px;
+    height: 220px;
+    width: 220px;
+}
+.login-container-inputs-div {
+    display: grid;
+    gap: 10px;
+    width: 220px;
+}
+.login-input-div {
+    display: grid;
+}
+label {
+    display: grid;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.login-input-div input {
+    height: 40px;
+    border-radius: 12px;
+    padding: 7px;
+    box-sizing: border-box;
+    background: #ececec;
+    border: 0;
+}
+.login-input-send-div {
+    display: grid;
+}
+.login-input-send-div .login-input-div {
+    display: flex;
+    gap: 5px;
+}
+.login-input-send-div button {
+    height: 40px;
+    width: 100%;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    background: #4D4D4D;
+    color: #fff;
+}
+
+.login-register-div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.login-register-div a, p {
+    margin: 0;
+}
+
+/* Footer */
+footer {
+    margin: 0 auto;
+    background: #1E1E1E;
+    width: 90vw;
+    max-width: 1920px;
+    height: 20vh;
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    border-radius: 0 40px;
+}
+footer p {
+    color: #fff;
+    margin-top: 30px;
+}

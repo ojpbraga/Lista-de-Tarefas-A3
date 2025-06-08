@@ -1,4 +1,4 @@
-﻿<div class="login-container">
+﻿@* <div class="login-container">
     <div class="login-card">
 
         <!-- Adiciona a imagem de perfil no topo -->
@@ -24,4 +24,106 @@
 
         <p class="register-link">Ou clique <a asp-action="Register">aqui</a> para se registrar!</p>
     </div>
-</div>
+</div> *@
+
+@model CadastroMVC.Models.ViewModel.LoginViewModel
+
+<header>
+        <div class="container-header">
+            <div>Logo</div>
+            <div class="header-link-a">
+                <a href="">Contratação</a>
+                <a href="">Localidades</a>
+                <a href="">E-Center</a>
+                <a href="">Blog</a>
+            </div>
+            <div class="header-button-div">
+                <p>Entrar</p>
+            </div>
+        </div>
+    </header>
+    
+    <section class="container-apresentation-section">
+
+        <div class="container-service">
+
+            <div id="service-tag-div">
+                <div></div>
+                <p>Serviços</p>
+            </div>
+
+            <h2 id="service-title-h2">Cotação</h2>
+
+            <div id="service-button-div">
+                <p>Entrar</p>
+                <div>-></div>
+            </div>
+
+        </div>
+
+        <div id="container-layout-div"></div>
+
+    </section>
+
+    <section class="container-about-us-section">
+        <div class="about-us-container-div">
+            <div id="container-layout-1-div"></div>
+            <div id="container-layout-2-div"></div>
+        </div>
+
+        <div class="about-us-tag-div">
+            <div></div>
+            <p>Sobre a gente</p>
+        </div>
+
+        <div class="about-us-description-div">
+            <p>Somos a ProAuto e nossa missão é oferecer a liberdade da estrada com o carro ideal e sem burocracia.</p>
+            <img src="../img/car-image.svg" alt="">
+        </div>
+
+    </section>
+
+    <form asp-action="Submitlogin" id="container-login-div" style="display: none;">
+        <div id="login-container-div">
+            <div id="login-background-image-div">
+                <img src="../img/womam.png" alt="">
+            </div>
+
+            <div class="login-container-inputs-div">
+                <div class="login-input-div">
+                    <label asp-validation-for="CPF" class="text-danger">CPF</label>
+                    <input asp-for="CPF" class="form-control" type="text" placeholder="000.000.000-00">
+                </div>
+                <div class="login-input-send-div">
+                    <label asp-validation-for="Placa" class="text-danger" for="">Placa</label>
+                    <div class="login-input-div">
+                        <input asp-for="Placa" class="form-control" type="text" placeholder="AAA-1234">
+                        <button type="submit" value="Entrar">Entrar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="login-register-div">
+                <p>Ou</p>
+                <a href="">Registre-se</a>
+            </div>
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                }
+                @if (TempData["Unauthorized"] != null)
+                {
+                    <div class="alert alert-danger">
+                        @TempData["Unauthorized"]
+                    </div>
+                }
+        </div>
+
+    </form>
+
+    <footer>
+        <p>Copyright 2025 ProAuto - Todos os direitos reservados</p>
+    </footer>
