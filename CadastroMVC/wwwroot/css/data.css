@@ -1,0 +1,133 @@
+body, h1, p, h3 {
+    margin: 0;
+    font-family: Inter;
+}
+
+header {
+    position: fixed;
+    top: 50px;
+    height: 50px;
+    width: 100vw;
+    z-index: 1000;
+}
+.container-header {
+    height: 50px;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 100px;
+    max-width: 1220px;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(77, 77, 77, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 4px;
+}
+.header-button-div {
+    background: #4D4D4D;
+    padding: 10px 30px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    cursor: pointer;
+    z-index: 2;
+}
+.header-button-div p {
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+.header-link-a {
+    display: flex;
+    justify-content: space-between;
+    width: 30vw;
+    max-width: 550px;
+}
+.header-link-a a {
+    color: #fff;
+    text-decoration: none;
+    cursor: not-allowed;
+}
+
+main {
+    width: 100vw;
+    height: 100vh;
+    max-width: 1000px;
+    max-height: 720px;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+}
+#container-data-div {
+    margin-top: 10vh;
+    display: flex;
+    width: 100%;
+    gap: 50px;
+}
+
+.container-description-div {
+    width: 40%;
+}
+.container-description-div #description-subtitle-p {
+    font-size: 1.6rem;
+    color: #808080;
+    text-align: start;
+    font-weight: 500;
+}
+.container-description-div h1 {
+    font-size: 7rem;
+    color: #4D4D4D;
+    position: relative;
+}
+.container-description-div span::before {
+    content: "";
+    background: #6FDB5A;
+    z-index: -1;
+    width: 100%;
+    height: 90px;
+    display: block;
+    position: absolute;
+    top: 30px;
+}
+.container-description-div p {
+    text-align: center;
+    width: 100%;
+}
+.container-data-div {
+    flex-grow: 1;
+}
+
+/* Container Data */
+.container-data-div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 16px;
+}
+.data-result-div {
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+}
+.data-result-div div {
+    display: grid;
+    
+    /* height: 70px; */
+}
+.data-result-container-div {
+    display: grid;
+    gap: 26px;
+}
+.container-data-div h1 {
+    color: #808080;
+    font-weight: 400;
+}
+
+.container-data-div  h3 {
+    color: #808080;
+    font-weight: 400;
+}

@@ -2,33 +2,100 @@
 @{
     ViewData["Title"] = "Início";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Olá <b>@Model.Nome</b>!</h1>
-    <h5>Confira todas as suas informações a seguir:</h5>
-    <br />
-    @if (TempData["Update"] != null)
+@if (TempData["Update"] != null)
     {
             <div class="alert alert-success" role="alert">
             @TempData["Update"]
             </div>
     }
-    <h3>Associado</h3>
-    <p>Nome: <b>@Model.Nome</b></p>
-    <p>CPF: <b>@Model.CPF</b></p>
-    <p>Telefone: <b>@Model.Telefone</b></p>
-    <br />
-    <h3>Veículo</h3>
-    <p>Modelo: <b>@Model.Veiculo.Modelo</b></p>
-    <p>Placa: <b>@Model.Veiculo.Placa</b></p>
-    <br />
-    <h3>Endereço</h3>
-    <p>CEP: <b>@Model.Endereco.CEP</b></p>
-    <p>Rua: <b>@Model.Endereco.Rua</b></p>
-    <p>Numero: <b>@Model.Endereco.Numero</b></p>
-    <p>Bairro: <b>@Model.Endereco.Bairro</b></p>
-    <p>Cidade: <b>@Model.Endereco.Cidade</b></p>
-    <p>País: <b>@Model.Endereco.Pais</b></p>
-    <p>Observação: <b>@Model.Endereco.Observacao</b></p>
-    <a class="btn btn-primary" asp-action="Update">Atualizar endereço</a>
-</div>
+
+<header>
+        <div class="container-header">
+            <div>Logo</div>
+            <div class="header-link-a">
+                <a href="">Contratação</a>
+                <a href="">Localidades</a>
+                <a href="">E-Center</a>
+                <a href="">Blog</a>
+            </div>
+            <div class="header-button-div">
+                <p>Sair</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="container-data-div">
+
+            <div class="container-description-div">
+                <p id="description-subtitle-p">Seu veículo</p>
+                <h1><span>Seguro</span><br/>com a gente</h1>
+                <p>It is a long established fact that a reader will be distracted by the readable content</p>
+            </div>
+    
+            <div class="container-data-div">
+                <h1>Dados</h1>
+                <div class="data-result-div">
+                    <div class="data-result-container-div">
+                        <div>
+                            <p>Nome</p>
+                            <h3>@Model.Nome</h3>
+                        </div>
+                        <div>
+                            <p>CPF</p>
+                            <h3>@Model.CPF</h3>
+                        </div>
+                        <div>
+                            <p>Telefone</p>
+                            <h3>@Model.Telefone</h3>
+                        </div>
+                        <div>
+                            <p>Modelo</p>
+                            <h3>@Model.Veiculo.Modelo</h3>
+                        </div>
+                        <div>
+                            <p>Placa</p>
+                            <h3>@Model.Veiculo.Placa</h3>
+                        </div>
+                        <div>
+                            <p>CEP</p>
+                            <h3>@Model.Endereco.CEP</h3>
+                        </div>
+                    </div>
+    
+                    <div class="data-result-container-div">
+                        <div>
+                            <p>Rua</p>
+                            <h3>@Model.Endereco.Rua</h3>
+                        </div>
+                        <div>
+                            <p>Número</p>
+                            <h3>@Model.Endereco.Numero</h3>
+                        </div>
+                        <div>
+                            <p>Bairro</p>
+                            <h3>@Model.Endereco.Bairro</h3>
+                        </div>
+                        <div>
+                            <p>Cidade</p>
+                            <h3>@Model.Endereco.Cidade</h3>
+                        </div>
+                        <div>
+                            <p>País</p>
+                            <h3>@Model.Endereco.Pais</h3>
+                        </div>
+                        <div>
+                            <p>Observação</p>
+                            <h3>@Model.Endereco.Observacao</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/data.css" asp-append-version="true" />
+}
