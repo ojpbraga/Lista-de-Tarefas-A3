@@ -1,39 +1,29 @@
-# Execução do código
+🚀 Como rodar o Projeto Pro Auto no VS Code
+🎓 Projeto A3 - Refatoração de Código - Seguradora Pro Auto
 
-Requisitos:
+Agora o processo de execução do projeto está muito mais simples e direto! Siga os passos abaixo para rodar o sistema completo (frontend + backend) utilizando o Visual Studio Code e o terminal. 🖥️💻
 
-- .Net 6.0
-- MySql 8.0
-- Visual Studio(Ou visual code, tutorial baseado no visual studio).
+✅ Passos para iniciar o projeto:
+1️⃣ Inicie o Frontend
+Abra o terminal no VS Code e digite:
 
-Faça o download do código acima.
+cd CadastroMVC
+dotnet run
 
-Dentro do Mysql, crie um banco de dados com o nome que desejar para que a aplicação possa consumir.
-Com o código em mãos, abra o arquivo CadastroProAuto.sln pelo visual studio na opção 'Abrir um projeto ou solução'. Dentro projeto, pela direita no 'Gerenciador de Soluções' abra a pasta 'Services' e clique com botão direito em cima do arquivo 'Services' e em 'adicionar/Novo item' crie um arquivo chamado 'appsettings.json'; esse arquivo será utilizado para as interações da aplicação com o seu banco de dados/etc. Dentro do appsettings.json(apague se vier algo escrito), crie uma seção chamada: 
+🌐 Isso iniciará o frontend da aplicação (interface visual do sistema).
 
-```json
-{
-"ConnectionStrings":{
-  "default":"server= ; database= ; user id= ; password= ;"
-  }
-}
-```
+2️⃣ Inicie o Backend
+Abra uma nova instância do terminal no VS Code e digite:
 
-Os campos dentro da opção 'default' a serem preenchidos são:
+cd Services
+dotnet run
 
-- Server: O servidor do seu banco de dados ex: localhost, 197.168.0.1 e etc.
-- Database: O nome do banco de dados a ser utilizado.
-- User id: Seu usuário do Mysql.
-- Password: A senha do seu usuário Mysql.
+🔌 Isso iniciará o backend da aplicação (API + regras de negócio).
 
-Com o arquivo appsettings.json preenchido, clique com o botão direito na solução 'CadastroProAuto' e selecione 'Propriedades'. Clique na opção 'Vários projetos de inicialização' e com a setinha da janela, mova o projeto 'Services' para a última posição, após clique na opção 'Nenhum' e selecione a opção 'Iniciar'. Clique em 'Aplicar e 'Ok' após essas alterações. Na parte superior do Visual Studio, clique na barra de pesquisa e digite 'Console do Gerenciador de Pacotes'. Dentro do terminal do gerenciador de pacotes aberto em baixo, clique na opção 'Projeto padrão' e selecione a opção 'Data\Data'. No shell de execução do gerenciador de pacotes, faça um migration ao seu banco, digitando o comando 'Add-Migration First'. Após terminar o processo, digite o comando 'Update-Database' para adição das tabelas no banco de dados do Mysql.
-Após a inserção das tabelas do banco de dados no Mysql, acesse novamente o arquivo que criamos 'appsettings.json' dentro da pasta services e crie mais um campo chamado "Token" em cima do campo "ConnectionStrings".
+🟢 Pronto!
+O projeto estará disponível localmente!
+Você poderá acessar a aplicação pelo navegador e, se quiser testar a API, vá até:
 
-```json
-"Token":"",
-```
+https://localhost:7191/swagger
 
-No campo "Token", insira dentro das aspas uma chave qualquer que será utilizado para gerar o token JWT da aplicação.
-Para finalizar, clique com o botão direito em cima da solução 'CadastroProAuto' e em 'Propriedades'. Coloque a opção 'CadastroMVC' como penúltima e selecione nela também a opção de 'Iniciar', após isso, clique em 'Aplicar' e 'Ok'. Para execução, clique no botãozinho de Play verde escrito 'Iniciar' no Visual Studio.
-
-*Obs.:* Dentro da pasta Cadastro MVC existe outro arquivo 'appsettings.json' do frontend. Este contendo os links com os endpoints da API. O link em desenvolvimento da API está configurado no 'launchSettings.json' para iniciar em "https://localhost:7191" ou "http://localhost:5191".
+💡 Dica: Mantenha os dois terminais abertos para garantir que frontend e backend funcionem simultaneamente.
