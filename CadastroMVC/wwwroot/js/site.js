@@ -8,3 +8,6 @@ document.getElementById("service-button-div").addEventListener("click", function
 document.getElementsByClassName("header-button-div")[0].addEventListener("click", function() {
     document.getElementById("container-login-div").style.display = "grid";
 });
+document.getElementsByClassName("header-logo-div")[0].addEventListener("click", function() {
+    document.getElementById("container-login-div").style.display = "none";
+});
